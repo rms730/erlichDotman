@@ -1,0 +1,68 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "performance",
+    "category": "performance",
+    "stage": "implementation",
+    "objective": "Preserve deduplication order with linear expected comparisons.",
+    "complexity": "high",
+    "ambiguity": "low",
+    "risk": "low",
+    "signals": [],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 3,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 3,
+    "architecture_high_implementation_low": 3,
+    "progressive": 3
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "performance",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "dedupe.py": "def deduplicate(values):\n    result = []\n    for value in values:\n        if value not in result:\n            result.append(value)\n    return result\n"
+      },
+      "1": {
+        "dedupe.py": "def deduplicate(values):\n    result = []\n    for value in values:\n        if value not in result:\n            result.append(value)\n    return result\n"
+      },
+      "2": {
+        "dedupe.py": "def deduplicate(values):\n    result = []\n    for value in values:\n        if value not in result:\n            result.append(value)\n    return result\n"
+      },
+      "3": {
+        "dedupe.py": "def deduplicate(values):\n    return list(dict.fromkeys(values))\n"
+      },
+      "4": {
+        "dedupe.py": "def deduplicate(values):\n    return list(dict.fromkeys(values))\n"
+      }
+    },
+    "script_choices": "Synthetic tiers 0-2 retain quadratic lookup; tier 3+ patches preserve order with linear expected work. The validator counts equality operations rather than using noisy wall-clock thresholds.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": true,
+      "progressive": true
+    }
+  }
+}

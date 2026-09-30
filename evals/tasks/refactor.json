@@ -1,0 +1,68 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "refactor",
+    "category": "refactor",
+    "stage": "implementation",
+    "objective": "Normalize labels without changing order or duplicate semantics.",
+    "complexity": "medium",
+    "ambiguity": "low",
+    "risk": "low",
+    "signals": [],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 2,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 2,
+    "architecture_high_implementation_low": 2,
+    "progressive": 2
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "refactor",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "labels.py": "def normalize_labels(values):\n    return sorted(set(value.strip() for value in values if value.strip()))\n"
+      },
+      "1": {
+        "labels.py": "def normalize_labels(values):\n    return sorted(set(value.strip() for value in values if value.strip()))\n"
+      },
+      "2": {
+        "labels.py": "def normalize_labels(values):\n    result = []\n    for value in values:\n        label = value.strip()\n        if label:\n            result.append(label)\n    return result\n"
+      },
+      "3": {
+        "labels.py": "def normalize_labels(values):\n    result = []\n    for value in values:\n        label = value.strip()\n        if label:\n            result.append(label)\n    return result\n"
+      },
+      "4": {
+        "labels.py": "def normalize_labels(values):\n    result = []\n    for value in values:\n        label = value.strip()\n        if label:\n            result.append(label)\n    return result\n"
+      }
+    },
+    "script_choices": "Synthetic tier 1 patch removes duplicates and changes order; tier 2+ patches preserve both.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": true,
+      "progressive": true
+    }
+  }
+}

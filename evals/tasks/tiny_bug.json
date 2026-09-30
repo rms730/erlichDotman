@@ -1,0 +1,68 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "tiny_bug",
+    "category": "tiny_bug",
+    "stage": "implementation",
+    "objective": "Clamp valid indices and reject empty inputs.",
+    "complexity": "low",
+    "ambiguity": "low",
+    "risk": "low",
+    "signals": [],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 0,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 1,
+    "architecture_high_implementation_low": 1,
+    "progressive": 1
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "boundary",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "numbers.py": "def clamp_index(index, size):\n    return max(0, min(index, size))\n"
+      },
+      "1": {
+        "numbers.py": "def clamp_index(index, size):\n    return max(0, min(index, size))\n"
+      },
+      "2": {
+        "numbers.py": "def clamp_index(index, size):\n    if size <= 0:\n        raise ValueError('size must be positive')\n    return max(0, min(index, size - 1))\n"
+      },
+      "3": {
+        "numbers.py": "def clamp_index(index, size):\n    if size <= 0:\n        raise ValueError('size must be positive')\n    return max(0, min(index, size - 1))\n"
+      },
+      "4": {
+        "numbers.py": "def clamp_index(index, size):\n    if size <= 0:\n        raise ValueError('size must be positive')\n    return max(0, min(index, size - 1))\n"
+      }
+    },
+    "script_choices": "Synthetic tier 1 patch misses the upper boundary and empty input; tier 2+ patches repair both.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": false,
+      "progressive": true
+    }
+  }
+}

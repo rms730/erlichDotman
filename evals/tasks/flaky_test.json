@@ -1,0 +1,31 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "flaky_test",
+    "category": "flaky_test",
+    "stage": "debugging",
+    "objective": "Exercise flaky_test routing.",
+    "complexity": "low",
+    "ambiguity": "high",
+    "risk": "low",
+    "signals": [
+      "unclear_root_cause"
+    ],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": []
+  },
+  "expected_floor": 3,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 3,
+    "architecture_high_implementation_low": 3,
+    "progressive": 3
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors."
+}

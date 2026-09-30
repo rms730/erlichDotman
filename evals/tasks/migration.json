@@ -1,0 +1,31 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "migration",
+    "category": "migration",
+    "stage": "implementation",
+    "objective": "Exercise migration routing.",
+    "complexity": "high",
+    "ambiguity": "low",
+    "risk": "critical",
+    "signals": [
+      "irreversible"
+    ],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": []
+  },
+  "expected_floor": 4,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 4,
+    "architecture_high_implementation_low": 4,
+    "progressive": 4
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors."
+}

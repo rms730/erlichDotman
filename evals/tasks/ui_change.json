@@ -1,0 +1,29 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "ui_change",
+    "category": "ui_change",
+    "stage": "implementation",
+    "objective": "Exercise ui_change routing.",
+    "complexity": "low",
+    "ambiguity": "low",
+    "risk": "low",
+    "signals": [],
+    "mechanical": true,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": []
+  },
+  "expected_floor": 0,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 1,
+    "architecture_high_implementation_low": 1,
+    "progressive": 1
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors."
+}

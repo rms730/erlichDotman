@@ -1,0 +1,70 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "security",
+    "category": "security",
+    "stage": "implementation",
+    "objective": "Enforce the allowed ASCII identifier grammar.",
+    "complexity": "medium",
+    "ambiguity": "low",
+    "risk": "high",
+    "signals": [
+      "security"
+    ],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 3,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 3,
+    "architecture_high_implementation_low": 3,
+    "progressive": 3
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "security",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "keys.py": "def valid_key(value):\n    return bool(value) and '..' not in value\n"
+      },
+      "1": {
+        "keys.py": "def valid_key(value):\n    return bool(value) and '..' not in value\n"
+      },
+      "2": {
+        "keys.py": "def valid_key(value):\n    return bool(value) and '..' not in value\n"
+      },
+      "3": {
+        "keys.py": "import re\ndef valid_key(value):\n    return bool(re.fullmatch(r'[A-Za-z0-9_-]+', value))\n"
+      },
+      "4": {
+        "keys.py": "import re\ndef valid_key(value):\n    return bool(re.fullmatch(r'[A-Za-z0-9_-]+', value))\n"
+      }
+    },
+    "script_choices": "Synthetic tiers 1-2 patches reject only dot traversal; tier 3+ patches implement the full ASCII key grammar.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": true,
+      "progressive": true
+    }
+  }
+}

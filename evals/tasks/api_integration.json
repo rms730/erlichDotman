@@ -1,0 +1,71 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "api_integration",
+    "category": "api_integration",
+    "stage": "implementation",
+    "objective": "Update the API response envelope and its consumer.",
+    "complexity": "medium",
+    "ambiguity": "medium",
+    "risk": "medium",
+    "signals": [],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 2,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 2,
+    "architecture_high_implementation_low": 2,
+    "progressive": 2
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "api",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "client.py": "def parse_response(response):\n    return response['data']['display_name']\n"
+      },
+      "1": {
+        "client.py": "def parse_response(response):\n    return response['data']['display_name']\n"
+      },
+      "2": {
+        "client.py": "def parse_response(response):\n    if 'error' in response:\n        raise ValueError('upstream rejected request')\n    return response['data']['display_name']\n",
+        "endpoint.py": "from client import parse_response\ndef display_user(response):\n    return parse_response(response) or 'Anonymous'\n"
+      },
+      "3": {
+        "client.py": "def parse_response(response):\n    if 'error' in response:\n        raise ValueError('upstream rejected request')\n    return response['data']['display_name']\n",
+        "endpoint.py": "from client import parse_response\ndef display_user(response):\n    return parse_response(response) or 'Anonymous'\n"
+      },
+      "4": {
+        "client.py": "def parse_response(response):\n    if 'error' in response:\n        raise ValueError('upstream rejected request')\n    return response['data']['display_name']\n",
+        "endpoint.py": "from client import parse_response\ndef display_user(response):\n    return parse_response(response) or 'Anonymous'\n"
+      }
+    },
+    "script_choices": "Synthetic tier 1 patch updates only parsing; tier 2+ patches update the consumer and error handling.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": true,
+      "progressive": true
+    }
+  }
+}

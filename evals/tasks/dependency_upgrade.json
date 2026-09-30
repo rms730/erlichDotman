@@ -1,0 +1,29 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "dependency_upgrade",
+    "category": "dependency_upgrade",
+    "stage": "implementation",
+    "objective": "Exercise dependency_upgrade routing.",
+    "complexity": "medium",
+    "ambiguity": "low",
+    "risk": "medium",
+    "signals": [],
+    "mechanical": false,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": []
+  },
+  "expected_floor": 2,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 2,
+    "architecture_high_implementation_low": 2,
+    "progressive": 2
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors."
+}

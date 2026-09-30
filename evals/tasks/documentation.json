@@ -1,0 +1,68 @@
+{
+  "task": {
+    "schema_version": 1,
+    "project_id": "fixture-app",
+    "task_id": "documentation",
+    "category": "documentation",
+    "stage": "documentation",
+    "objective": "Correct and execute the documented clamp examples.",
+    "complexity": "low",
+    "ambiguity": "low",
+    "risk": "low",
+    "signals": [],
+    "mechanical": true,
+    "deterministic": false,
+    "required_capabilities": [
+      "testing"
+    ],
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ]
+  },
+  "expected_floor": 0,
+  "expected_tiers": {
+    "frontier_only": 4,
+    "lightweight_only": 1,
+    "intelligent": 1,
+    "architecture_high_implementation_low": 1,
+    "progressive": 1
+  },
+  "rationale": "Independent hand-reviewed category/risk/ambiguity expectations; baseline lightweight tier 1 may violate required floors.",
+  "fixture": {
+    "directory": "docs",
+    "validation_commands": [
+      [
+        "python",
+        "check.py"
+      ]
+    ],
+    "patches": {
+      "0": {
+        "README.md": "Clamp keeps a value within bounds.\n\n>>> from mathlib import clamp\n>>> clamp(-2)\n0\n>>> clamp(20)\n20\n"
+      },
+      "1": {
+        "README.md": "Clamp keeps a value within bounds.\n\n>>> from mathlib import clamp\n>>> clamp(-2)\n0\n>>> clamp(20)\n20\n"
+      },
+      "2": {
+        "README.md": "Clamp keeps a value within bounds, with default bounds 0 and 10.\n\n>>> from mathlib import clamp\n>>> clamp(-2)\n0\n>>> clamp(20)\n10\n>>> clamp(4, lower=5, upper=8)\n5\n"
+      },
+      "3": {
+        "README.md": "Clamp keeps a value within bounds, with default bounds 0 and 10.\n\n>>> from mathlib import clamp\n>>> clamp(-2)\n0\n>>> clamp(20)\n10\n>>> clamp(4, lower=5, upper=8)\n5\n"
+      },
+      "4": {
+        "README.md": "Clamp keeps a value within bounds, with default bounds 0 and 10.\n\n>>> from mathlib import clamp\n>>> clamp(-2)\n0\n>>> clamp(20)\n10\n>>> clamp(4, lower=5, upper=8)\n5\n"
+      }
+    },
+    "script_choices": "Synthetic tier 1 patch corrects one example; tier 2+ patches correct and execute all boundary examples.",
+    "expected_outcomes": {
+      "frontier_only": true,
+      "lightweight_only": false,
+      "intelligent": true,
+      "architecture_high_implementation_low": false,
+      "progressive": true
+    }
+  }
+}
