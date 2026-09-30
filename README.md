@@ -1,4 +1,4 @@
-# Engineering Cascade
+# ErlichDotman
 
 Route AI-assisted engineering work through the least expensive credible capability, preserve compact project context, and escalate from validation evidence.
 
@@ -24,7 +24,9 @@ The fixture command explicitly authorizes bundled Python validators in temporary
 
 ## Use the skill
 
-Point a host agent at [skills/engineering-cascade/SKILL.md](skills/engineering-cascade/SKILL.md), or copy that whole skill directory into the host's supported skill location. Nothing is installed automatically. The skill works without the CLI; the CLI makes contracts, selection, and measurement deterministic. Host permissions and user intent remain authoritative.
+The skill is named `erlichdotman`, displayed as **ErlichDotman**. Point a host agent at [skills/erlichdotman/SKILL.md](skills/erlichdotman/SKILL.md), or copy that whole skill directory into the host's supported skill location. Nothing is installed automatically. The skill works without the CLI; the CLI makes contracts, selection, and measurement deterministic. Host permissions and user intent remain authoritative.
+
+The repository is [rms730/erlichDotman](https://github.com/rms730/erlichDotman). The existing Python package and CLI remain named `engineering-cascade`.
 
 For core maintenance, start with `AGENTS.md` and affected source/tests. For orchestration, load only the selected skill and target-project context; its links are conditional, not a preload list. Workers receive their own project rules and bound packet. The bootstrap prompt and research are outside default context. [Context ownership](docs/CONTEXT_ARCHITECTURE.md) documents the load paths.
 

@@ -1,5 +1,5 @@
 {
-  "name": "engineering-cascade",
+  "name": "erlichdotman",
   "capabilities": ["engineering-orchestration", "context-budgeting", "capability-routing"],
   "estimated_tokens": 850,
   "trust": "repository-local",

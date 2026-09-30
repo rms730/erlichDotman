@@ -2,7 +2,7 @@
 
 Load catalog metadata before loading skill instructions. This prevents five unused methodologies from consuming the implementation agent's context and allows compatibility checks before composing them.
 
-The generic Agent Skills format describes `SKILL.md`, progressive disclosure and supporting resources. Engineering Cascade adds an optional `skill.json` sidecar for deterministic capability/cost/conflict selection. Existing skills without sidecars still work through host-provided catalog metadata; this version does not claim to discover every installed format automatically.
+The generic Agent Skills format describes `SKILL.md`, progressive disclosure and supporting resources. ErlichDotman adds an optional `skill.json` sidecar for deterministic capability/cost/conflict selection. Existing skills without sidecars still work through host-provided catalog metadata; this version does not claim to discover every installed format automatically.
 
 ```json
 {

@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Name the repository ErlichDotman and the portable skill `erlichdotman`; retain the existing package and CLI names.
 - Add capability-tier routing, context budgets, project-bound handoffs, and skill metadata selection.
 - Add strict JSON contracts, truthful telemetry, policy recommendations, and manual runtime dispatch.
 - Add routing and scripted-code evaluations, automated tests, documentation, and CI.

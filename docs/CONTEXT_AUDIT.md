@@ -1,6 +1,6 @@
 # Context-architecture audit — 2026-09-30
 
-Baseline: commit `99287bb`, the completed bootstrap. The audit applies the hierarchy in [CONTEXT_ARCHITECTURE.md](CONTEXT_ARCHITECTURE.md) without changing working routing, context selection, handoff, adapter or telemetry components.
+Baseline: commit `99287bb`, the completed bootstrap; audit snapshot: `52740c3`. The recorded footprints describe that snapshot. Run the helper for current counts after later changes, including renaming. The audit applies the hierarchy in [CONTEXT_ARCHITECTURE.md](CONTEXT_ARCHITECTURE.md) without changing working routing, context selection, handoff, adapter or telemetry components.
 
 ## Findings and targeted changes
 

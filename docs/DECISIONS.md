@@ -14,6 +14,8 @@ The operator has many repositories and wants higher engineering value per infere
 
 Use **engineering-cascade** for the repository, package, CLI, and skill. It describes engineering stages and evidence-driven escalation without binding to a vendor or temporary model. Account inventory showed no matching project; targeted public GitHub search found no exact-name project. This is a naming check, not a trademark guarantee. The workspace was empty; the new repository lives in its own child directory. Public release is a separate authorization boundary.
 
+Naming update, 2026-09-30: the operator chose **ErlichDotman** for the repository (`rms730/erlichDotman`) and portable skill (`erlichdotman`). The package and CLI retain their original names. The original naming research above concerns the bootstrap name.
+
 ## Contracts and flow
 
 Version 1 JSON contracts cover project profiles, tasks, policy, context items, packets, skill metadata, decisions, and telemetry. The packaged JSON Schema is the source of validation truth. Unknown metrics use `null`.

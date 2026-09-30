@@ -1,6 +1,6 @@
 # Context ownership and loading
 
-The bootstrap prompt initializes the repository once. Future work uses the repository's maintained entrypoints; it does not replay that prompt. The ErlichDotman workspace contains the `engineering-cascade` core; its existing package and repository names remain unchanged.
+The bootstrap prompt initializes the repository once. Future work uses the repository's maintained entrypoints; it does not replay that prompt. ErlichDotman is the repository and portable skill (`erlichdotman`); the existing Python package and CLI remain named `engineering-cascade`.
 
 ```mermaid
 flowchart TD

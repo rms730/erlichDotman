@@ -1,4 +1,4 @@
-# Engineering Cascade — repository rules
+# ErlichDotman — repository rules
 
 Improve accepted engineering output per total resource while preserving quality.
 

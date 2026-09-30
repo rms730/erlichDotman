@@ -9,7 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 AGENTS = 'AGENTS.md'
-SKILL = 'skills/engineering-cascade/SKILL.md'
+SKILL = 'skills/erlichdotman/SKILL.md'
+HISTORICAL_SKILL = 'skills/engineering-cascade/SKILL.md'
+SKILL_PATHS = (SKILL, HISTORICAL_SKILL)
+REFERENCE_ROOTS = tuple(f'{Path(path).parent}/references/' for path in SKILL_PATHS)
 EXAMPLE_INPUTS = ('examples/project.json', 'examples/task.json')
 
 
@@ -32,8 +35,8 @@ def _snapshot(revision=None):
     paths = sorted(set(paths))
     measured = {}
     for filename in paths:
-        if (filename not in {AGENTS, SKILL, *EXAMPLE_INPUTS}
-                and not filename.startswith(('docs/', 'skills/engineering-cascade/references/'))):
+        if (filename not in {AGENTS, *SKILL_PATHS, *EXAMPLE_INPUTS}
+                and not filename.startswith(('docs/', *REFERENCE_ROOTS))):
             continue
         if not filename.endswith(('.md', '.json')):
             continue
@@ -43,8 +46,9 @@ def _snapshot(revision=None):
                 else (ROOT / filename).read_text(encoding='utf-8'))
         measured[filename] = {'characters': len(text), 'words': len(text.split()),
                               'approx_tokens': math.ceil(len(text) / 4)}
+    skill_path = SKILL if SKILL in measured else HISTORICAL_SKILL
     overhead = {name: measured[path]['approx_tokens'] for name, path in (
-        ('core_development', AGENTS), ('runtime_orchestration', SKILL),
+        ('core_development', AGENTS), ('runtime_orchestration', skill_path),
     )}
     overhead['orchestration_in_core_checkout'] = sum(overhead.values())
     example_inputs = sum(measured[path]['approx_tokens'] for path in EXAMPLE_INPUTS)
@@ -55,9 +59,9 @@ def _snapshot(revision=None):
                                       if '/references/' in path),
     }
     warnings = []
-    if measured[SKILL]['approx_tokens'] > 1500:
+    if measured[skill_path]['approx_tokens'] > 1500:
         warnings.append('Core skill exceeds the 1500-token review target; justify with quality evals.')
-    return {'instruction_files': {path: measured[path] for path in (AGENTS, SKILL)},
+    return {'instruction_files': {path: measured[path] for path in (AGENTS, skill_path)},
             'default_instruction_overhead': overhead,
             'normal_orchestration_example': {
                 'input_files': list(EXAMPLE_INPUTS), 'input_approx_tokens': example_inputs,

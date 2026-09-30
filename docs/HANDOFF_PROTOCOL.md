@@ -4,7 +4,7 @@ A packet transfers conclusions and constraints so an implementation agent does n
 
 The constructor checks task/project/decision identity, revision-scoped context and context estimates. A `needs_human` decision cannot become a dispatchable packet. Paths are project-relative. Required facts such as tests and invariants must be provided, rather than invented from a short objective.
 
-Use [the template](../skills/engineering-cascade/templates/implementation-packet.md) and [the worked example](../examples/README.md). A useful packet answers:
+Use [the template](../skills/erlichdotman/templates/implementation-packet.md) and [the worked example](../examples/README.md). A useful packet answers:
 
 - What observable behavior changes, and why?
 - Which files/interfaces carry that behavior?

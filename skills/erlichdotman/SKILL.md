@@ -1,9 +1,9 @@
 ---
-name: engineering-cascade
+name: erlichdotman
 description: Allocate reasoning, context and specialized skills across engineering tasks when resource efficiency, project isolation or evidence-driven escalation matters. Skip trivial deterministic actions that need no orchestration.
 ---
 
-# Engineering Cascade
+# ErlichDotman
 
 Produce accepted changes per total resource consumed, preserving quality, user scope and host permissions. Capability tiers describe needs, not guaranteed runtime controls.
 
