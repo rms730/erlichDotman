@@ -67,3 +67,25 @@ def test_overflowing_json_number_is_rejected(tmp_path):
     path.write_text('{"value": 1e999}')
     with pytest.raises(ValueError):
         load_json(path)
+
+
+def test_json_nesting_budget_is_independent_of_interpreter_stack(tmp_path):
+    path = tmp_path / 'nesting-limit.json'
+    path.write_text('[' * 65 + '0' + ']' * 65)
+    with pytest.raises(ValueError):
+        load_json(path)
+
+
+def test_json_at_nesting_budget_is_accepted(tmp_path):
+    path = tmp_path / 'nesting-boundary.json'
+    path.write_text('[' * 64 + '0' + ']' * 64)
+    value = load_json(path)
+    for _ in range(64):
+        value = value[0]
+    assert value == 0
+
+
+def test_brackets_in_json_text_do_not_consume_nesting_budget(tmp_path):
+    path = tmp_path / 'brackets.json'
+    path.write_text(json.dumps({'text': '[' * 2000}))
+    assert load_json(path)['text'] == '[' * 2000

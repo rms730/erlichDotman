@@ -8,6 +8,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+MAX_NESTING_DEPTH = 64
+
 
 def _unique_object(pairs):
     result = {}
@@ -38,12 +40,14 @@ def load_json(path, max_bytes=4 * 1024 * 1024):
     if len(raw) > max_bytes:
         raise ValueError("JSON exceeds byte budget")
     try:
-        return json.loads(
+        document = json.loads(
             raw.decode("utf-8"),
             object_pairs_hook=_unique_object,
             parse_constant=_invalid_number,
             parse_float=_finite_float,
         )
+        _check_finite(document)
+        return document
     except (UnicodeDecodeError, json.JSONDecodeError, RecursionError) as exc:
         raise ValueError("Invalid UTF-8 JSON") from exc
 
@@ -60,15 +64,17 @@ def _validator(kind):
     return Draft202012Validator(schema)
 
 
-def _check_finite(document):
+def _check_finite(document, depth=0):
+    if depth > MAX_NESTING_DEPTH:
+        raise ValueError("JSON exceeds nesting limit")
     if isinstance(document, float) and not math.isfinite(document):
         raise ValueError("Non-finite contract value")
     if isinstance(document, dict):
         for value in document.values():
-            _check_finite(value)
+            _check_finite(value, depth + 1)
     elif isinstance(document, (list, tuple)):
         for value in document:
-            _check_finite(value)
+            _check_finite(value, depth + 1)
 
 
 def validate(document, kind):

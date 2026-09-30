@@ -10,7 +10,7 @@ No hosted daemon, model-training stack, vector store, provider framework or paid
 
 | Check | Result |
 | --- | --- |
-| Behavior tests | 155 passed in the clean Python 3.11 virtual environment |
+| Behavior tests | 158 passed in the clean Python 3.11 virtual environment |
 | Ruff | Passed |
 | Installed dependency consistency | Passed |
 | Routing evaluation | 15 task classes × 5 strategies: 75 checks passed |
@@ -20,6 +20,8 @@ No hosted daemon, model-training stack, vector store, provider framework or paid
 | Independent code review | Addressed validator path-alias bypass, protected-floor grading, per-project feedback scope, terminal ordering, integral JSON numbers, unbounded attempt allocation and subprocess output/descendant cleanup |
 | Packaging | Source distribution and wheel build; wheel schema/CLI smoke test outside the checkout |
 | CI | Configured for Python 3.11 and 3.13, least-privilege read permissions and pinned official actions |
+
+The first remote run passed Python 3.11 and exposed a parser-depth assumption on Python 3.13. An explicit 64-level JSON nesting budget replaced reliance on interpreter recursion behavior, with acceptance/rejection and quoted-bracket regression checks.
 
 Fixtures exercise a boundary bug, refactor, nested API/multi-file behavior, executable documentation, key-validation security behavior and operation-count performance acceptance. Nine other classes currently have routing-contract coverage rather than executable implementations.
 

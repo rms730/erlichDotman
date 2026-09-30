@@ -17,4 +17,4 @@ Bundled fixture execution is opt-in and uses fresh temporary directories. It doe
 
 Keep credentials in the runtime's secret store, never in task packets or telemetry. Raw traces may contain private code and paths; default local storage is ignored. Audit tracked paths and content before pushing, including all commit history. CI must not receive production credentials.
 
-JSON loads reject duplicate keys, non-finite numbers and oversized files; contracts reject unknown fields. Remote schema resolution and skill installation are absent. Adapters must declare controls and permissions and preserve requested/effective model distinctions. Unknown controls cannot be simulated as successful execution.
+JSON loads reject duplicate keys, non-finite numbers, oversized files and nesting beyond 64 levels; contracts reject unknown fields. The explicit nesting limit is independent of Python's parser recursion behavior. Remote schema resolution and skill installation are absent. Adapters must declare controls and permissions and preserve requested/effective model distinctions. Unknown controls cannot be simulated as successful execution.
