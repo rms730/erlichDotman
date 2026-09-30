@@ -44,7 +44,7 @@ def load_json(path, max_bytes=4 * 1024 * 1024):
             parse_constant=_invalid_number,
             parse_float=_finite_float,
         )
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+    except (UnicodeDecodeError, json.JSONDecodeError, RecursionError) as exc:
         raise ValueError("Invalid UTF-8 JSON") from exc
 
 
@@ -73,8 +73,11 @@ def _check_finite(document):
 
 def validate(document, kind):
     """Raise ValueError on invalid input, without printing potentially private values."""
-    _check_finite(document)
-    error = next(_validator(kind).iter_errors(document), None)
+    try:
+        _check_finite(document)
+        error = next(_validator(kind).iter_errors(document), None)
+    except RecursionError as exc:
+        raise ValueError("Contract exceeds nesting limit") from exc
     if error is not None:
         path = ".".join(str(part) for part in error.absolute_path) or "root"
         raise ValueError(f"Invalid {kind} at {path}: {error.validator}")

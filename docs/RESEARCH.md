@@ -2,6 +2,8 @@
 
 No upstream implementation was copied or vendored. The core independently implements simple contracts and rules. Licenses below describe upstream code unless noted; evaluated repositories/datasets and documentation can have separate terms. Dates are verified default-branch commit dates, not claims about publication dates.
 
+The runtime dependency [jsonschema](https://github.com/python-jsonschema/jsonschema) is [MIT licensed](https://github.com/python-jsonschema/jsonschema/blob/main/COPYING). Its [official validation API](https://python-jsonschema.readthedocs.io/en/stable/validate/) supplies Draft 2020-12 validation without implementing a partial validator in this project. No provider framework is required.
+
 | Source | Checked activity / license | Concept incorporated | Limits and integration choice |
 | --- | --- | --- | --- |
 | [RouteLLM](https://github.com/lm-sys/RouteLLM) | [2024-08-10 commit](https://github.com/lm-sys/RouteLLM/commit/0b64fdafe049e596a3f5657c219329f24af24198), [Apache-2.0](https://github.com/lm-sys/RouteLLM/blob/main/LICENSE) | Separate routing, calibration, execution and evaluation | Two-model preference routing and QA benchmarks do not establish coding acceptance. Some routers need embeddings. Optional experiment, no dependency. |

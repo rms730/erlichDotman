@@ -6,11 +6,11 @@ Execution: native coordination with independent, bounded agents for research, co
 
 ## Tasks
 
-- [ ] Establish versioned contracts and explicit policy. Test malformed input, unknown fields, risk floors, deterministic routing, downgrade, escalation, retry exhaustion, and non-mutating decisions before implementation.
-- [ ] Build context and handoff functions. Test project/revision isolation, path escape and symlinks, required-item budget exhaustion, freshness, and packet rendering. Select compatible skills within a metadata budget; discovery does not load bodies or install packages.
-- [ ] Build telemetry and offline evaluation. Test partial usage, denominator correctness, failed-task costs, finite retries, validator timeouts, fixture failure exit codes, and measured-only feedback recommendations. Compare five strategies without manufacturing model usage.
-- [ ] Integrate CLI, manual adapter, packaged contracts, synthetic examples, and thin skill. Exercise commands end to end; forward-test the skill with a realistic project-mixing request.
-- [ ] Review architecture/security, run all checks, build and smoke-test a wheel, record honest results, and commit logical units. Audit the exact tracked payload before any private push. Request approval before making it public.
+- [x] Establish versioned contracts and explicit policy. Test malformed input, unknown fields, risk floors, deterministic routing, downgrade, escalation, retry exhaustion, and non-mutating decisions before implementation.
+- [x] Build context and handoff functions. Test project/revision isolation, path escape and symlinks, required-item budget exhaustion, freshness, and packet rendering. Select compatible skills within a metadata budget; discovery does not load bodies or install packages.
+- [x] Build telemetry and offline evaluation. Test partial usage, denominator correctness, failed-task costs, finite retries, validator timeouts, fixture failure exit codes, and measured-only feedback recommendations. Compare five strategies without manufacturing model usage.
+- [x] Integrate CLI, manual adapter, packaged contracts, synthetic examples, and thin skill. Exercise commands end to end; forward-test the skill with a realistic project-mixing request.
+- [x] Review architecture/security, run all checks, build and smoke-test a wheel, record honest results, and commit logical units. Audit the exact tracked payload before any private push. Request approval before making it public.
 
 ## Interfaces
 

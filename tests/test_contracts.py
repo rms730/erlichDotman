@@ -53,3 +53,17 @@ def test_oversized_json_is_rejected(tmp_path):
     path.write_text(json.dumps({'text': 'x' * 100}))
     with pytest.raises(ValueError):
         load_json(path, max_bytes=30)
+
+
+def test_excessively_nested_json_is_rejected_without_parser_traceback(tmp_path):
+    path = tmp_path / 'nested.json'
+    path.write_text('[' * 2000 + '0' + ']' * 2000)
+    with pytest.raises(ValueError):
+        load_json(path)
+
+
+def test_overflowing_json_number_is_rejected(tmp_path):
+    path = tmp_path / 'overflow.json'
+    path.write_text('{"value": 1e999}')
+    with pytest.raises(ValueError):
+        load_json(path)
