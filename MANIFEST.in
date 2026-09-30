@@ -4,3 +4,5 @@ recursive-include skills *.md *.json
 recursive-include examples *.md *.json
 recursive-include evals/tasks *.json
 recursive-include evals/fixtures *.py *.md
+include scripts/context_footprint.py
+recursive-include evals/context_architecture *.json *.md
