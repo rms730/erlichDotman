@@ -1,0 +1,13 @@
+[
+  {
+    "id": "division-interface",
+    "project_id": "sample-app",
+    "revision": "example-revision",
+    "path": "src/calculator.py",
+    "symbol": "divide",
+    "content": "def divide(a, b):\n    return a / b\n",
+    "estimated_tokens": 80,
+    "required": true,
+    "trust": "repository-local"
+  }
+]

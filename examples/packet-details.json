@@ -1,0 +1,14 @@
+{
+  "why": "The caller expects None for zero divisors instead of an exception.",
+  "files": ["src/calculator.py", "tests/test_calculator.py"],
+  "symbols": ["divide"],
+  "current_behavior": "divide(3, 0) raises ZeroDivisionError.",
+  "desired_behavior": "divide(3, 0) returns None; divide(6, 2) remains 3.0.",
+  "invariants": ["Nonzero division retains its existing return type and behavior."],
+  "constraints": ["No new dependencies; no changes to callers."],
+  "implementation_notes": ["Check zero before division."],
+  "tests": ["Assert divide(3, 0) is None and divide(6, 2) == 3.0."],
+  "do_not_change": ["Public function name and parameter order."],
+  "escalate_if": ["Callers require a different zero-divisor contract."],
+  "expected_output": "Small patch, passing validator output, and any unresolved findings."
+}

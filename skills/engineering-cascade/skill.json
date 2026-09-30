@@ -1,0 +1,8 @@
+{
+  "name": "engineering-cascade",
+  "capabilities": ["engineering-orchestration", "context-budgeting", "capability-routing"],
+  "estimated_tokens": 850,
+  "trust": "repository-local",
+  "conflicts": [],
+  "requires": []
+}
