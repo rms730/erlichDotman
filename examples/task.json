@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "project_id": "sample-app",
+  "task_id": "safe-divide",
+  "category": "tiny_bug",
+  "stage": "implementation",
+  "objective": "Handle zero divisors without changing nonzero division.",
+  "complexity": "low",
+  "ambiguity": "low",
+  "risk": "low",
+  "signals": [],
+  "mechanical": true,
+  "deterministic": false,
+  "required_capabilities": [
+    "testing"
+  ],
+  "validation_commands": [
+    [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ]
+  ]
+}

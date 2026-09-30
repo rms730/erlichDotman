@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "policy_id": "bootstrap-v1",
+  "category_tiers": {
+    "tiny_bug": 1,
+    "feature": 2,
+    "refactor": 2,
+    "api_integration": 2,
+    "ui_change": 2,
+    "migration": 3,
+    "flaky_test": 3,
+    "dependency_upgrade": 2,
+    "unfamiliar_repository": 3,
+    "multi_file_bug": 2,
+    "architecture": 3,
+    "security": 3,
+    "documentation": 1,
+    "review": 2,
+    "performance": 3
+  },
+  "risk_floors": {
+    "low": 0,
+    "medium": 2,
+    "high": 3,
+    "critical": 4
+  },
+  "signal_floors": {
+    "security": 3,
+    "irreversible": 4,
+    "large_blast_radius": 3,
+    "distributed": 3,
+    "unfamiliar": 3,
+    "contradictory": 3,
+    "cross_repository": 3,
+    "production_critical": 4,
+    "unclear_root_cause": 3
+  },
+  "context_budgets": {
+    "0": 0,
+    "1": 2000,
+    "2": 4000,
+    "3": 8000,
+    "4": 12000
+  },
+  "max_attempts": 3,
+  "max_context_tokens": 16000,
+  "skill_budget_tokens": 3000,
+  "minimum_samples": 20,
+  "success_threshold": 0.95
+}
