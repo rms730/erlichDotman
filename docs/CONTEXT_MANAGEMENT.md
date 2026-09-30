@@ -1,5 +1,7 @@
 # Context management
 
+[Context ownership](CONTEXT_ARCHITECTURE.md) defines which entrypoint each agent loads. This document explains the implementation and freshness limits; it is optional, not an additional default prompt.
+
 Context is an explicit manifest of excerpts, not an invitation to read the repository. Each item carries project identity, repository revision, provenance, an estimate and a required/optional flag. Each project profile carries its repository, branch, revision, stack, compact architecture, constraints, decisions, validation commands and skill locations.
 
 Selection rejects mixed project IDs, stale revisions and duplicate item IDs. Required excerpts must fit before optional context is selected. If a required item exceeds the budget, stop and ask the host to narrow scope or expand the budget from evidence. Never truncate invariants or quietly omit the relevant interface to save tokens.

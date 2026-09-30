@@ -1,5 +1,7 @@
 # Initial milestone implementation plan
 
+Historical, completed bootstrap plan. Its execution assignments and interface sketches are not instructions for future tasks. Read current source/schemas and the relevant tests for current behavior.
+
 Goal: deliver the small core and thin skill defined in [DECISIONS.md](DECISIONS.md).
 
 Execution: native coordination with independent, bounded agents for research, context/skill selection, and telemetry/evaluation. The user requested autonomous reversible decisions and appropriate delegation. This overrides repeated design/plan approval gates in the local Superpowers workflow; public publication remains gated.

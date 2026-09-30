@@ -1,5 +1,7 @@
 # Bootstrap decisions — 2026-09-30
 
+Historical design rationale, loaded for architectural decisions only. Current source, packaged schemas and validation evidence define implemented behavior; this record is not default agent context.
+
 The operator has many repositories and wants higher engineering value per inference resource, with correctness and maintainability preserved. The first milestone needs a usable skill, handoffs, explicit policy, deterministic checks, and an evaluation framework. It does not need a daemon or a hosted agent platform.
 
 ## Approach

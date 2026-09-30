@@ -26,6 +26,8 @@ The fixture command explicitly authorizes bundled Python validators in temporary
 
 Point a host agent at [skills/engineering-cascade/SKILL.md](skills/engineering-cascade/SKILL.md), or copy that whole skill directory into the host's supported skill location. Nothing is installed automatically. The skill works without the CLI; the CLI makes contracts, selection, and measurement deterministic. Host permissions and user intent remain authoritative.
 
+For core maintenance, start with `AGENTS.md` and affected source/tests. For orchestration, load only the selected skill and target-project context; its links are conditional, not a preload list. Workers receive their own project rules and bound packet. The bootstrap prompt and research are outside default context. [Context ownership](docs/CONTEXT_ARCHITECTURE.md) documents the load paths.
+
 The control plane follows:
 
 ```text
@@ -46,9 +48,9 @@ A precise plan can use advanced reasoning, then hand a mechanical implementation
 
 The initial policy is a heuristic. There is no learned cost optimizer, paid provider adapter, scheduler, or automatic policy rewrite. Fixture results demonstrate harness behavior, not real-model quality or cost savings. Missing token counts and costs remain `null`.
 
-## Read next
+## Documentation by task
 
-[Architecture](docs/ARCHITECTURE.md) explains the boundaries. [Decisions](docs/DECISIONS.md) records the language and scope choices. [Evaluation](docs/EVALUATION.md) defines quality and resource accounting. [Research](docs/RESEARCH.md) credits primary sources. [Security](docs/SECURITY_MODEL.md) covers trust and execution limits. [Roadmap](docs/ROADMAP.md) identifies the next experiments.
+[Architecture](docs/ARCHITECTURE.md) explains the boundaries. [Decisions](docs/DECISIONS.md) is historical rationale for architectural review. [Evaluation](docs/EVALUATION.md) defines quality and resource accounting. [Research](docs/RESEARCH.md) supplies attribution for explicit research/license review. [Security](docs/SECURITY_MODEL.md) covers trust and execution limits. [Roadmap](docs/ROADMAP.md) identifies the next experiments.
 
 Private project profiles, provider bindings, and telemetry belong in ignored `.cascade/`. Keep raw eval output in ignored `evals/results/`; share only reviewed aggregates. The public examples describe fictional projects.
 

@@ -1,5 +1,7 @@
 # Bootstrap verification — 2026-09-30
 
+Historical bootstrap evidence, not a runtime instruction or a claim about the latest checkout. New changes require fresh verification.
+
 ## Delivered
 
 A Python 3.11+ reference core, a standalone thin Agent Skills entrypoint, strict packaged JSON contracts, explicit tier/risk/context policy, revision-bound project context, required-fact handoffs, metadata-only skill composition, manual host dispatch, truthful telemetry and reviewable feedback. MIT license, contribution/security guidance, primary-source attribution, private-state exclusions, CI and build metadata accompany the code.

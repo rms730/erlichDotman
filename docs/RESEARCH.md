@@ -1,5 +1,7 @@
 # Primary-source research — checked 2026-09-30
 
+Consult for explicit research, attribution or dependency/license review. These notes are not routine runtime context and do not override current repository evidence.
+
 No upstream implementation was copied or vendored. The core independently implements simple contracts and rules. Licenses below describe upstream code unless noted; evaluated repositories/datasets and documentation can have separate terms. Dates are verified default-branch commit dates, not claims about publication dates.
 
 The runtime dependency [jsonschema](https://github.com/python-jsonschema/jsonschema) is [MIT licensed](https://github.com/python-jsonschema/jsonschema/blob/main/COPYING). Its [official validation API](https://python-jsonschema.readthedocs.io/en/stable/validate/) supplies Draft 2020-12 validation without implementing a partial validator in this project. No provider framework is required.
