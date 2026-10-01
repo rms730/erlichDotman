@@ -1046,6 +1046,410 @@
         "human_intervention",
         "measurement"
       ]
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "project_id": {
+          "$ref": "#/$defs/task/properties/project_id"
+        },
+        "task_id": {
+          "$ref": "#/$defs/task/properties/project_id"
+        },
+        "revision": {
+          "$ref": "#/$defs/workflow/$defs/text"
+        },
+        "journey": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "owner": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            },
+            "state": {
+              "enum": [
+                "open",
+                "blocked",
+                "failed",
+                "accepted"
+              ]
+            },
+            "required_evidence": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/workflow/$defs/text"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "captured_evidence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "requirement": {
+                    "$ref": "#/$defs/workflow/$defs/text"
+                  },
+                  "ref": {
+                    "$ref": "#/$defs/workflow/$defs/text"
+                  }
+                },
+                "required": [
+                  "requirement",
+                  "ref"
+                ]
+              },
+              "minItems": 0
+            },
+            "outcome": {
+              "enum": [
+                "unknown",
+                "failed",
+                "passed"
+              ]
+            },
+            "outcome_ref": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            },
+            "transfer": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "from_owner": {
+                      "$ref": "#/$defs/workflow/$defs/text"
+                    },
+                    "to_owner": {
+                      "$ref": "#/$defs/workflow/$defs/text"
+                    },
+                    "accepted": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "from_owner",
+                    "to_owner",
+                    "accepted"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "outcome_kind": {
+              "enum": [
+                "application",
+                "transport",
+                "component",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "owner",
+            "state",
+            "required_evidence",
+            "captured_evidence",
+            "outcome",
+            "outcome_ref",
+            "transfer",
+            "outcome_kind"
+          ]
+        },
+        "priority": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "wip_limit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "decision": {
+              "$ref": "#/$defs/workflow/$defs/text"
+            },
+            "before": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/workflow/$defs/task_state"
+              },
+              "minItems": 0
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/workflow/$defs/task_state"
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "wip_limit",
+            "decision",
+            "before",
+            "after"
+          ]
+        },
+        "retry": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "completed_attempts": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "stall_kind": {
+              "enum": [
+                "ownership",
+                "tooling_access",
+                "context",
+                "implementation",
+                "reasoning"
+              ]
+            },
+            "purpose": {
+              "enum": [
+                "diagnose",
+                "capture_evidence",
+                "implement"
+              ]
+            },
+            "failure_evidence_ref": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            },
+            "capture_blocked_reason": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            },
+            "hypothesis": {
+              "$ref": "#/$defs/workflow/$defs/text"
+            },
+            "requested_tier": {
+              "$ref": "#/$defs/workflow/$defs/nullable_tier"
+            },
+            "effective_tier": {
+              "$ref": "#/$defs/workflow/$defs/nullable_tier"
+            }
+          },
+          "required": [
+            "completed_attempts",
+            "stall_kind",
+            "purpose",
+            "failure_evidence_ref",
+            "capture_blocked_reason",
+            "hypothesis",
+            "requested_tier",
+            "effective_tier"
+          ]
+        },
+        "integration": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "critical_behaviors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "$ref": "#/$defs/task/properties/project_id"
+                  },
+                  "behavior": {
+                    "$ref": "#/$defs/workflow/$defs/text"
+                  },
+                  "accepted_revision": {
+                    "$ref": "#/$defs/workflow/$defs/text"
+                  },
+                  "evidence_ref": {
+                    "$ref": "#/$defs/workflow/$defs/text"
+                  }
+                },
+                "required": [
+                  "id",
+                  "behavior",
+                  "accepted_revision",
+                  "evidence_ref"
+                ]
+              },
+              "minItems": 1
+            },
+            "candidate_checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "$ref": "#/$defs/task/properties/project_id"
+                  },
+                  "status": {
+                    "enum": [
+                      "passed",
+                      "failed",
+                      "not_checked",
+                      "excluded"
+                    ]
+                  },
+                  "revision": {
+                    "$ref": "#/$defs/workflow/$defs/nullable_text"
+                  },
+                  "evidence_ref": {
+                    "$ref": "#/$defs/workflow/$defs/nullable_text"
+                  },
+                  "exclusion": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "reason": {
+                            "$ref": "#/$defs/workflow/$defs/text"
+                          },
+                          "impact": {
+                            "$ref": "#/$defs/workflow/$defs/text"
+                          },
+                          "acceptance": {
+                            "enum": [
+                              "pending",
+                              "not_accepted",
+                              "accepted"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "reason",
+                          "impact",
+                          "acceptance"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "status",
+                  "revision",
+                  "evidence_ref",
+                  "exclusion"
+                ]
+              },
+              "minItems": 0
+            },
+            "acceptance": {
+              "enum": [
+                "pending",
+                "not_accepted",
+                "accepted",
+                "accepted_with_exclusions"
+              ]
+            }
+          },
+          "required": [
+            "critical_behaviors",
+            "candidate_checks",
+            "acceptance"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "project_id",
+        "task_id",
+        "revision"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "journey"
+          ]
+        },
+        {
+          "required": [
+            "priority"
+          ]
+        },
+        {
+          "required": [
+            "retry"
+          ]
+        },
+        {
+          "required": [
+            "integration"
+          ]
+        }
+      ],
+      "$defs": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "nullable_text": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/workflow/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nullable_tier": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "task_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "project_id": {
+              "$ref": "#/$defs/task/properties/project_id"
+            },
+            "task_id": {
+              "$ref": "#/$defs/task/properties/project_id"
+            },
+            "state": {
+              "enum": [
+                "active",
+                "paused",
+                "displaced",
+                "completed"
+              ]
+            },
+            "checkpoint_ref": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            },
+            "next_step": {
+              "$ref": "#/$defs/workflow/$defs/nullable_text"
+            }
+          },
+          "required": [
+            "project_id",
+            "task_id",
+            "state",
+            "checkpoint_ref",
+            "next_step"
+          ]
+        }
+      }
     }
   }
 }

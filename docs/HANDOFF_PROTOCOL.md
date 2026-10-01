@@ -15,3 +15,5 @@ Use [the template](../skills/erlichdotman/templates/implementation-packet.md) an
 Markdown rendering is for a host agent; commands are quoted for display, never executed by the renderer. JSON is canonical and validated. Trust labels remain visible on context so repository instructions are not mistaken for higher-authority instructions.
 
 Evaluate packet formats by running equivalent held-out tasks with full context, compact structured JSON and rendered Markdown. Compare validation success, retries, usage, human review and omitted-fact defects. The first milestone checks required-field preservation and realistic skill behavior; it does not assert that this initial format is optimal.
+
+For diagnostic delegation or combined-candidate assembly, use the conditional skill guidance and, when useful, the [optional bound workflow sidecar](WORKFLOW_BOUNDARIES.md). It preserves declared owner, decisive evidence and prior critical acceptance facts at dispatch without changing the packet contract. Multi-project priority state stays outside worker context.

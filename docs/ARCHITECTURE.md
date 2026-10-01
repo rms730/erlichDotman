@@ -8,6 +8,7 @@ The core makes decisions and validates boundaries; the host agent does the engin
 | `routing.py` | Capability and context recommendation | No permission grant, provider choice, or model execution |
 | `context.py` | Required-first context selection and profile freshness | One project/revision; bounded estimates; repository-local paths |
 | `handoff.py` | Bind facts, constraints and validation into a packet | Missing required facts stop construction |
+| `workflow.py` | Check optional bound ownership, priority, retry and integration facts | Declared facts only; no scheduler, evidence verification or permission grant |
 | `skills.py` | Read metadata and select compatible capabilities | No body loading, execution, or installation |
 | `adapters.py` | Prepare host dispatch | Explicit unsupported controls and unknown usage |
 | `validation.py` | Run authorized argv validators | Finite timeout, bounded output; caller owns sandbox/permission |

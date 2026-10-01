@@ -1,0 +1,41 @@
+{
+  "stream": {
+    "schema_version": 1, "project_id": "demo-chat", "task_id": "send", "revision": "demo-r3",
+    "journey": {
+      "owner": "journey-owner", "state": "open", "required_evidence": ["terminal-event"],
+      "captured_evidence": [], "outcome": "unknown", "outcome_kind": "unknown", "outcome_ref": null,
+      "transfer": null
+    },
+    "retry": {
+      "completed_attempts": 1, "stall_kind": "tooling_access", "purpose": "capture_evidence",
+      "failure_evidence_ref": null, "capture_blocked_reason": "The previous capture ended after headers.",
+      "hypothesis": "Retaining the terminal event will distinguish application rejection from render failure.",
+      "requested_tier": 2, "effective_tier": null
+    }
+  },
+  "priority": {
+    "schema_version": 1, "project_id": "ledger-box", "task_id": "export", "revision": "ledger-r8",
+    "priority": {
+      "wip_limit": 1, "decision": "User prioritizes export; pause send diagnosis and retain its capture next step.",
+      "before": [
+        {"project_id": "demo-chat", "task_id": "send", "state": "active", "checkpoint_ref": "local://demo/headers", "next_step": "Capture terminal event."}
+      ],
+      "after": [
+        {"project_id": "demo-chat", "task_id": "send", "state": "paused", "checkpoint_ref": "local://demo/pause", "next_step": "Refresh binding, then capture terminal event."},
+        {"project_id": "ledger-box", "task_id": "export", "state": "active", "checkpoint_ref": null, "next_step": "Reproduce missing rows with synthetic data."}
+      ]
+    }
+  },
+  "integration": {
+    "schema_version": 1, "project_id": "demo-onboarding", "task_id": "combined", "revision": "candidate-r5",
+    "integration": {
+      "critical_behaviors": [
+        {"id": "eligibility-gate", "behavior": "Initial eligibility submission precedes consent; neighboring endpoints remain guarded.", "accepted_revision": "repair-r2", "evidence_ref": "local://demo/earlier-acceptance"}
+      ],
+      "candidate_checks": [
+        {"id": "eligibility-gate", "status": "passed", "revision": "candidate-r5", "evidence_ref": "local://demo/final-eligibility", "exclusion": null}
+      ],
+      "acceptance": "accepted"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "stream-diagnosis",
+    "request": "Finish diagnosing why the synthetic DemoChat send journey produces no usable answer. Prepare the next bounded handoff using available evidence.",
+    "artifacts": {
+      "binding": "demo-chat / send / revision demo-r3; no dirty edits",
+      "browser": "Authenticated POST returned HTTP 201 and text/event-stream. No visible answer; terminal event was not retained.",
+      "checks": "Auth and controller component tests pass. End-to-end acceptance requires a usable answer or an explained application failure.",
+      "delegation": "The browser worker can repeat the synthetic request; the log worker can collect sanitized server events; the code worker is currently fixing an unrelated display issue. Nobody has explicitly accepted terminal-event capture.",
+      "runtime": "Manual adapter; effective model, reasoning and usage unknown. Two of three implementation attempts remain."
+    }
+  },
+  {
+    "id": "priority-interruption",
+    "request": "The new synthetic LedgerBox export repair takes priority over DemoChat diagnosis. Choose the next action and prepare any needed handoff.",
+    "artifacts": {
+      "work_in_progress_limit": 1,
+      "active": "DemoChat send diagnosis at revision demo-r3. Sanitized HTTP headers retained at local://demo/headers; terminal event missing; next step is a bounded event capture.",
+      "incoming": "LedgerBox export repair at revision ledger-r8. Reproduce missing CSV rows and preserve existing filters.",
+      "permissions": "Both local repairs are authorized; no publication or live data access."
+    }
+  },
+  {
+    "id": "candidate-assembly",
+    "request": "Assess the synthetic combined candidate and prepare its release handoff.",
+    "artifacts": {
+      "binding": "demo-onboarding / combined / candidate-r5; no dirty edits",
+      "earlier_acceptance": "Revision repair-r2 accepted the initial eligibility submission before policy consent while keeping neighboring endpoints guarded; local://demo/eligibility-check proves it.",
+      "candidate": "New preference-panel tests pass. Candidate was assembled from baseline-r1 and the panel branch. The eligibility guard file matches baseline-r1; final eligibility journey has not been checked.",
+      "runtime": "Effective settings and usage unknown; release publication is not authorized."
+    }
+  }
+]
