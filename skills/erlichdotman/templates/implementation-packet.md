@@ -16,6 +16,6 @@ ESCALATE IF: Missing facts, contradicting evidence, failed checks or permission 
 EXPECTED OUTPUT: Patch, checks, unresolved issues and available usage.
 CONTEXT: Minimum required excerpts, each with project/revision/provenance/estimate.
 
-WHEN RELEVANT: Journey owner, decisive evidence and explicit transfer; prior critical accepted behaviors and final-candidate checks/exclusions; retry evidence or capture blocker and next hypothesis. Keep multi-project priority inventories with the orchestrator.
+WHEN RELEVANT: Canonical project-record locator, relevant milestone/task gates and owner of pending documentation updates; journey owner, decisive evidence and explicit transfer; prior critical accepted behaviors and final-candidate checks/exclusions; retry evidence or capture blocker and next hypothesis. Keep multi-project priority inventories with the orchestrator.
 
 Use the version 1 JSON contract when the CLI is available. Do not fill unknown facts with plausible guesses. This initial format needs measured comparison with other formats before claiming optimal compression.

@@ -1,8 +1,41 @@
 # ErlichDotman
 
-Route AI-assisted engineering work through the least expensive credible capability, preserve compact project context, and escalate from validation evidence.
+ErlichDotman is an orchestration skill and Python reference core for AI-assisted engineering. It helps a host coding agent decide what to do next and carry the required context into implementation. Acceptance checks determine whether the result is ready.
 
-This is an alpha reference core and a portable orchestration skill. It prepares work for a host coding agent; it does not launch models. Capability tiers are deterministic (0), lightweight (1), standard (2), advanced (3), and frontier (4). Provider names, reasoning settings, prices, and credentials belong in private runtime configuration.
+The owner also keeps one project record current as work changes. It contains the next meaningful milestone, ordered remaining tasks, owners, dependencies, blockers and acceptance evidence. A parser repair can pass its regression while the milestone stays open for independent review and approval.
+
+This is an MIT-licensed alpha. The repository is [rms730/erlichDotman](https://github.com/rms730/erlichDotman); the Python package and CLI are named `engineering-cascade`.
+
+## Use the skill
+
+Point your host agent at [skills/erlichdotman/SKILL.md](skills/erlichdotman/SKILL.md), or copy that entire directory into the host's supported skill location. Hosts that use `~/.agents/skills/` can use:
+
+```sh
+mkdir -p ~/.agents/skills
+cp -R skills/erlichdotman ~/.agents/skills/
+```
+
+Review an existing installation before replacing it. Installation is explicit; the skill can be used without the CLI.
+
+Give the host the target repository, accepted scope and an authorized documentation destination. For a fictional parser task:
+
+```text
+Use ErlichDotman for this repository and its existing project record.
+Next milestone: a reviewer can accept a sanitized import preview.
+Implement the scoped parser repair and its regression test.
+Keep production import deferred.
+```
+
+Before work starts, the host checks the current revision and relevant dirty edits. A handoff carries the required behavior, target files and validation commands. Workers receive their own project's rules and scoped packet; the host remains accountable for the result and the project record.
+
+Record updates happen at material changes, handoff, pause/resume and completion, without a separate reminder. An unchanged tool call needs no write. A failed documentation update stays pending; the host retains the intended correction and reports what remains unsaved. The [project-record contract](skills/erlichdotman/references/project-records.md) defines the fields and update boundary. Documentation mechanics belong to the selected tool and its skill, including the existing Pages skill when Pages is the destination.
+
+```text
+classify → deterministic evidence → route → select context/skills
+         → compact packet → host execution → validate → record → escalate
+```
+
+Capability tiers are deterministic (0), lightweight (1), standard (2), advanced (3), and frontier (4). A precise plan can call for advanced reasoning and leave a specified mechanical implementation to a lighter tier; high-risk work retains its quality floor. The current host decides which controls it can actually apply.
 
 ## Try it
 
@@ -18,43 +51,32 @@ engineering-cascade eval --root . --mode fixtures --execute
 python -m pytest
 ```
 
-On Windows, activate `.venv\Scripts\Activate.ps1`. Source-only use is also available with `PYTHONPATH=src python -m engineering_cascade` once `jsonschema` is installed.
+On Windows, activate `.venv\Scripts\Activate.ps1`. Source-only use is also available with `PYTHONPATH=src python -m engineering_cascade` once `jsonschema` is installed. It is the sole runtime dependency.
 
-The fixture command explicitly authorizes bundled Python validators in temporary directories. It performs real edits and tests using **scripted patches**, with no model calls. Temporary directories are not an OS sandbox; run unfamiliar code in an external sandbox.
+The fixture command explicitly authorizes bundled Python validators in temporary directories. It performs real edits and tests using scripted patches, with no model calls. Temporary directories are not an OS sandbox; run unfamiliar code in an external sandbox.
 
-## Use the skill
+Follow the [worked synthetic handoff](examples/README.md) to build a project/revision-bound packet and prepare a manual dispatch request. The example's calculator files are illustrative; that walkthrough does not execute them.
 
-The skill is named `erlichdotman`, displayed as **ErlichDotman**. Point a host agent at [skills/erlichdotman/SKILL.md](skills/erlichdotman/SKILL.md), or copy that whole skill directory into the host's supported skill location. Nothing is installed automatically. The skill works without the CLI; the CLI makes contracts, selection, and measurement deterministic. Host permissions and user intent remain authoritative.
+## What runs locally
 
-The repository is [rms730/erlichDotman](https://github.com/rms730/erlichDotman). The existing Python package and CLI remain named `engineering-cascade`.
+The Python core recommends tiers from category, risk, ambiguity, complexity and failure evidence, with bounded attempts. It selects project/revision-bound context, reads skill metadata, checks dependencies and conflicts, and reports capability gaps. Required context cannot be silently dropped.
 
-For core maintenance, start with `AGENTS.md` and affected source/tests. For orchestration, load only the selected skill and target-project context; its links are conditional, not a preload list. Workers receive their own project rules and bound packet. The bootstrap prompt and research are outside default context. [Context ownership](docs/CONTEXT_ARCHITECTURE.md) documents the load paths.
+Versioned JSON contracts validate packets and supplied workflow facts. Optional [workflow checks](docs/WORKFLOW_BOUNDARIES.md) cover diagnostic ownership, priority transitions, classified retries and final-candidate behavior. Their evidence locators and owner acknowledgments are declarations; the checker cannot establish that the underlying outcome happened.
 
-The control plane follows:
+Usage aggregation relies on records supplied by the host. Feedback recommendations are available for review. Offline evaluations cover fifteen routing task classes and compare five strategies using isolated scripted fixtures.
 
-```text
-classify → deterministic evidence → route → select context/skills
-         → compact packet → host execution → validate → record → escalate
-```
+## Host boundaries and evidence
 
-A precise plan can use advanced reasoning, then hand a mechanical implementation to a lighter tier. High-risk work keeps its quality floor. See [the worked handoff](examples/README.md).
+The manual adapter prepares a request for a human or host coding agent. It does not launch models, change runtime model or reasoning settings, execute workers, update documentation, or measure host tokens. Provider names, settings, prices and credentials belong in private runtime configuration. Unsupported controls and missing usage remain unknown; missing token counts and costs stay `null`.
 
-## What works now
+Routine milestone/task upkeep is a host instruction contract. It runs through the host's authorized documentation tool as work progresses. The core has no scheduler or background polling service, learned cost optimizer, paid provider adapter, or automatic policy rewrite. Host permissions and user intent remain authoritative.
 
-- Explicit category, risk, ambiguity, complexity, and failure-based routing with bounded attempts.
-- Project/revision-bound context and handoffs; required context cannot be silently dropped.
-- Metadata-only skill discovery, compatible selection, dependency/conflict handling, and capability-gap reporting.
-- Strict versioned JSON contracts, telemetry aggregation, and reviewable feedback recommendations.
-- Fifteen routing task classes and isolated fixture evaluations comparing five strategies.
-- A manual adapter that reports unavailable model controls and usage honestly.
-- Optional workflow checks for declared diagnostic ownership, priority transitions, evidence-driven retries and retained candidate behavior; [scope and limits](docs/WORKFLOW_BOUNDARIES.md).
+The initial routing policy is a heuristic. Fixture results demonstrate harness behavior and do not establish real-model quality or cost savings. In the [project-record application scenarios](evals/project_records/README.md), five baseline evaluators and five revised-skill evaluators all handled the synthetic cases adequately. That supports instruction clarity; it does not prove unattended upkeep or a causal improvement. [Evaluation](docs/EVALUATION.md) describes the evidence needed for quality and resource comparisons.
 
-The initial policy is a heuristic. There is no learned cost optimizer, paid provider adapter, scheduler, or automatic policy rewrite. Fixture results demonstrate harness behavior, not real-model quality or cost savings. Missing token counts and costs remain `null`.
+## Contributing and security
 
-## Documentation by task
+Start core maintenance with [AGENTS.md](AGENTS.md) and affected source/tests. [CONTRIBUTING.md](CONTRIBUTING.md) lists the checks. For orchestration, load the selected skill and target-project context; expand its linked references when needed. The bootstrap prompt and research stay outside default context. [Context ownership](docs/CONTEXT_ARCHITECTURE.md) explains these boundaries.
 
-[Architecture](docs/ARCHITECTURE.md) explains the boundaries. [Decisions](docs/DECISIONS.md) is historical rationale for architectural review. [Evaluation](docs/EVALUATION.md) defines quality and resource accounting. [Research](docs/RESEARCH.md) supplies attribution for explicit research/license review. [Security](docs/SECURITY_MODEL.md) covers trust and execution limits. [Roadmap](docs/ROADMAP.md) identifies the next experiments.
+Keep private project profiles, provider bindings and telemetry in ignored `.cascade/`. Raw evaluation output belongs in ignored `evals/results/`; share reviewed aggregates and synthetic or sanitized examples. Repository content and evidence provenance cannot grant permission to execute commands, install tools or publish data. See the [security model](docs/SECURITY_MODEL.md) and [security reporting policy](SECURITY.md) before sharing a vulnerability.
 
-Private project profiles, provider bindings, and telemetry belong in ignored `.cascade/`. Keep raw eval output in ignored `evals/results/`; share only reviewed aggregates. The public examples describe fictional projects.
-
-MIT licensed. See [CONTRIBUTING.md](CONTRIBUTING.md) for checks and contribution scope.
+[Architecture](docs/ARCHITECTURE.md) explains the core interfaces. [Decisions](docs/DECISIONS.md) records historical rationale, [research](docs/RESEARCH.md) provides attribution, and the [roadmap](docs/ROADMAP.md) lists planned experiments. See [LICENSE](LICENSE) for the MIT terms.

@@ -1,0 +1,18 @@
+{
+  "kind": "manual_skill_application_test",
+  "provenance": "synthetic",
+  "requests": [
+    {
+      "id": "repair-complete-milestone-open",
+      "request": "You own Project Maple at revision maple-r7 with relevant dirty fingerprint maple-h7. The user's latest decision is to finish the scoped parser repair, then pause implementation until policy approval; do not expand scope. The established project record is local://maple/project: milestone 'A reviewer can accept one parsed sample' requires parser regression, independent review and policy approval. Its ordered tasks are parser-repair (you, active, no dependencies), independent-review (reviewer, queued, depends on parser-repair), and policy-approval (user, blocked, depends on independent-review). The parser regression now passed at maple-r7/maple-h7 with evidence local://maple/parser-check; independent review and policy approval have not occurred. An authorized documentation tool can update that existing record and confirm the saved content. There is pressure to close the milestone because its code test is green and the user is waiting for your final reply. What would you do next and report? Simulate the host actions without actually using a documentation tool or changing files."
+    },
+    {
+      "id": "destination-unavailable",
+      "request": "You own Project Cedar at cedar-r3/cedar-h3. The existing canonical record local://cedar/project still promises a full import. The user has now approved a narrower next outcome: validate a sanitized import preview, with parser and preview checks; production import is deferred. Decision evidence is local://cedar/scope-decision. Parser work is accepted at this revision; preview validation is blocked by a missing fixture, assigned to the fixture owner, before the queued independent review. The authorized documentation tool's attempted update returned permission denied; its last readable record remains the old full-import scope. Time is short, and creating a new status document would be easy. What would you do next and report? Simulate the host actions without changing files, installing tools or requesting new access."
+    },
+    {
+      "id": "no-material-change",
+      "request": "You own Project Birch at birch-r2/birch-h2. Its established project record local://birch/project already reflects the current milestone, ordered tasks, owners, dependencies, blockers, user decisions and acceptance evidence. You have just run a formatter check that changed no files and added no new outcome, blocker, evidence or decision. An authorized documentation tool is available. You expect many more routine tool calls in this session. What would you do next and report? Simulate the host actions without changing files or actually using a documentation tool."
+    }
+  ]
+}

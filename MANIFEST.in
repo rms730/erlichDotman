@@ -8,3 +8,4 @@ include scripts/context_footprint.py
 recursive-include evals/context_architecture *.json *.md
 recursive-include evals/pilot *.json *.md
 recursive-include evals/workflow_reliability *.json *.md
+recursive-include evals/project_records *.json *.md

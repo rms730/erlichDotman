@@ -31,7 +31,7 @@ A skill description/catalog entry is discovery metadata. Loading its whole body 
 ## Document ownership
 
 - `AGENTS.md` owns durable constraints for changes to this core. It does not teach all engineering methodology or list current runtime policy thresholds.
-- `SKILL.md` owns the portable decision sequence, boundaries and conditional reference routes. Its references explain operational choices and remain usable when the skill directory is copied alone.
+- `SKILL.md` owns the portable decision sequence, boundaries and conditional reference routes. Its references explain operational choices and remain usable when the skill directory is copied alone. The project-record reference owns routine milestone/task upkeep; the configured documentation tool's skill owns its mechanics. Canonical records and pending updates are project state, not additional core instructions.
 - `docs/` owns rationale, implementation behavior, contributor validation, evaluation methods and deeper examples. It is not an automatic preload list.
 - `docs/DECISIONS.md`, `docs/IMPLEMENTATION_PLAN.md` and `docs/BOOTSTRAP_RESULTS.md` are historical bootstrap records. `docs/RESEARCH.md` is optional attribution/research context. None directs routine execution.
 - `src/`, the packaged schema and deterministic checks establish current behavior. The historical plan's interfaces and past test counts are snapshots, not live specifications.
