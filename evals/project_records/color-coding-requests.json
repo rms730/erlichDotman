@@ -1,0 +1,18 @@
+{
+  "kind": "manual_skill_application_test",
+  "provenance": "synthetic",
+  "requests": [
+    {
+      "id": "stable-color-across-outcomes",
+      "request": "For Project Maple, simulate two successive user-facing updates: first the preview check is blocked, then it passes at a newer revision. Read host preferences, current records and owner outcomes from color-coding-state.json under stable-color-across-outcomes. The host supports colored emoji prefixes and conversation messages. Return the exact two messages and the minimal configuration action, if any. No actual writes, UI changes, external calls or repository audits."
+    },
+    {
+      "id": "new-project-mapping",
+      "request": "Project Spruce is newly bound and has no assigned marker. Host preferences, available palette and current authoritative state are in color-coding-state.json under new-project-mapping. The host supports colored emoji and authorized private preference persistence. Simulate its first progress update and a later resume update at the same state. Return the two messages and any intended preference change. No actual writes, UI changes, external calls or repository audits."
+    },
+    {
+      "id": "plain-host-fallback",
+      "request": "Give Cedar's current status and describe what marker configuration should remain for later updates. Read its existing private color mapping, host capability and latest record/owner state from color-coding-state.json under plain-host-fallback. Return the exact status message and any intended preference change. No actual writes, UI changes, external calls or repository audits."
+    }
+  ]
+}

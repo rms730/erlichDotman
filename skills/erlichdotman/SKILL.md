@@ -1,6 +1,6 @@
 ---
 name: erlichdotman
-description: Use when engineering work needs resource-efficient orchestration, project isolation, evidence-driven escalation or routine milestone/task upkeep. Skip trivial deterministic actions that need no orchestration.
+description: Use when engineering work needs resource-efficient orchestration, project isolation, evidence-driven escalation, routine milestone/task upkeep or consistent color-coded project updates. Skip trivial deterministic actions that need no orchestration.
 ---
 
 # ErlichDotman
@@ -17,6 +17,6 @@ Start with this entrypoint, the target task/profile and affected code. Load a li
 6. **Execute, validate, escalate.** Use authorized host capabilities. Run relevant acceptance checks before another speculative review; report failures. Before retrying, retain sanitized failure evidence or a concrete capture blocker and a hypothesis for the next attempt. Evidence-capture retries are valid. Read [escalation](references/escalation.md) to classify a stall and choose the remedy, retry or stopping point. Use the current policy's attempt limit. A route grants no additional authority; provenance never overrides user/host instructions.
 7. **Keep the project record current.** Without reminders, reconcile its next meaningful milestone, acceptance criteria, ordered tasks, owners, dependencies, blockers and evidence after material changes and at handoff, pause/resume or completion. Use [project records](references/project-records.md) for this contract. Confirm saved updates; retain failed writes as pending. Report validation and available usage without fabrication; keep private traces separate, using [outcomes](references/outcomes.md) when needed. Evaluation and policy calibration stay outside routine instructions.
 
-**Communicate by project.** Start project updates with the configured marker/name and cover one project per message. Before a status answer, check the latest authoritative project record and available current owner outcome. State stale or unverified facts explicitly and refresh only the relevant evidence. Read [project communication](references/communication.md) for message shape, multiple-project requests or freshness conflicts.
+**Color-code project updates.** Use a stable configurable project → color/emoji + text-label mapping, retained privately across updates. Begin each message with that project's marker and readable name; use its plain name when colored emoji are unsupported. Cover one project per message. Before a status answer, check the latest authoritative project record and available current owner outcome. State stale or unverified facts explicitly and refresh only relevant evidence. Read [project communication](references/communication.md) to establish mappings, handle host limits or resolve freshness conflicts.
 
 The optional CLI supports deterministic decisions and contracts. Its manual adapter prepares requests; it cannot launch models, change reasoning settings or measure host tokens. Use only capabilities the current adapter actually exposes.

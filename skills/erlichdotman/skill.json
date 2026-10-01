@@ -1,7 +1,7 @@
 {
   "name": "erlichdotman",
   "capabilities": ["engineering-orchestration", "context-budgeting", "capability-routing"],
-  "estimated_tokens": 1185,
+  "estimated_tokens": 1238,
   "trust": "repository-local",
   "conflicts": [],
   "requires": []

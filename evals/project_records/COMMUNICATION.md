@@ -26,4 +26,4 @@ These are small instruction application simulations, not measured live delivery,
 
 The multiple-project case assumes the host supports separate conversation messages. Current record/outcome revisions match in the resolved-blocker fixture; lagging canonical records and conflicting revisions remain follow-up coverage. Independent review accepted the contract without reproducing the evaluator responses.
 
-The entrypoint's character-based estimate is 1,185 versus 1,076 at `f4e3fb3`, using `ceil(characters / 4)`; this is neither tokenizer output nor billed usage. The communication reference remains conditional.
+At communication update `4d8a4aa`, the entrypoint's character-based estimate was 1,185 versus 1,076 at `f4e3fb3`, using `ceil(characters / 4)`; this is neither tokenizer output nor billed usage. The communication reference remains conditional.

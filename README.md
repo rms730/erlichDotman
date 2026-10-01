@@ -4,6 +4,8 @@ ErlichDotman is an orchestration skill and Python reference core for AI-assisted
 
 The owner also keeps one project record current as work changes. It contains the next meaningful milestone, ordered remaining tasks, owners, dependencies, blockers and acceptance evidence. A parser repair can pass its regression while the milestone stays open for independent review and approval.
 
+Project color coding gives each project a stable colored marker with a readable name. Updates keep that identity as work progresses, with one project per message. The host checks current project evidence before reporting status.
+
 This is an MIT-licensed alpha. The repository is [rms730/erlichDotman](https://github.com/rms730/erlichDotman); the Python package and CLI are named `engineering-cascade`.
 
 ## Use the skill
@@ -36,6 +38,26 @@ classify → deterministic evidence → route → select context/skills
 ```
 
 Capability tiers are deterministic (0), lightweight (1), standard (2), advanced (3), and frontier (4). A precise plan can call for advanced reasoning and leave a specified mechanical implementation to a lighter tier; high-risk work retains its quality floor. The current host decides which controls it can actually apply.
+
+### Project color coding
+
+The host keeps each project's color, emoji and readable label in private preferences or ignored local state. Users can configure these assignments. For fictional projects:
+
+| Project | Color | Message prefix |
+| --- | --- | --- |
+| Maple | Blue | 🔵 Maple: |
+| Cedar | Orange | 🟠 Cedar: |
+
+A failed check and its later repair keep the same project marker:
+
+```text
+🔵 Maple: Preview validation is blocked on the fixture.
+🔵 Maple: Owner reports preview validation passed; independent review remains pending.
+```
+
+Each line represents a separate update. The readable name stays alongside the marker, so readers can identify projects without distinguishing colors. Existing mappings stay stable when a project is added or resumed; intentional changes follow user preferences.
+
+On a host that cannot display colored emoji, updates use `Maple:` or `Cedar:` and retain the configured mapping. Bubble styling belongs to the host; the skill supplies message prefixes. The [communication contract](skills/erlichdotman/references/communication.md) covers initial assignment, private persistence, supported delivery and current-state checks. This mapping is host configuration; the CLI does not load it or add color fields to its project schema.
 
 ## Try it
 
@@ -70,6 +92,8 @@ Usage aggregation relies on records supplied by the host. Feedback recommendatio
 The manual adapter prepares a request for a human or host coding agent. It does not launch models, change runtime model or reasoning settings, execute workers, update documentation, or measure host tokens. Provider names, settings, prices and credentials belong in private runtime configuration. Unsupported controls and missing usage remain unknown; missing token counts and costs stay `null`.
 
 Routine milestone/task upkeep is a host instruction contract. It runs through the host's authorized documentation tool as work progresses. The core has no scheduler or background polling service, learned cost optimizer, paid provider adapter, or automatic policy rewrite. Host permissions and user intent remain authoritative.
+
+Color-coded project communication also depends on the host following the skill and honoring its private mapping. No runtime UI is bundled.
 
 The initial routing policy is a heuristic. Fixture results demonstrate harness behavior and do not establish real-model quality or cost savings. In the [project-record application scenarios](evals/project_records/README.md), five baseline evaluators and five revised-skill evaluators all handled the synthetic cases adequately. That supports instruction clarity; it does not prove unattended upkeep or a causal improvement. [Evaluation](docs/EVALUATION.md) describes the evidence needed for quality and resource comparisons.
 

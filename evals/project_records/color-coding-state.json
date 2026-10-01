@@ -1,0 +1,25 @@
+{
+  "provenance": "synthetic",
+  "stable-color-across-outcomes": {
+    "project_id": "maple-demo",
+    "private_mapping": {"maple-demo": {"label": "Maple", "color": "blue", "emoji": "🔵"}},
+    "record_and_owner_outcomes": [
+      {"revision": "maple-r10", "freshness": "confirmed at first scenario boundary", "preview_check": "blocked", "blocker": "missing synthetic fixture", "next_step": "fixture-owner supplies fixture"},
+      {"revision": "maple-r11", "freshness": "confirmed at second scenario boundary", "preview_check": "passed", "fixture_blocker": "resolved", "remaining_gate": "independent review by review-owner"}
+    ]
+  },
+  "new-project-mapping": {
+    "project_id": "spruce-demo",
+    "project_name": "Spruce",
+    "private_mapping": {"maple-demo": {"label": "Maple", "color": "blue", "emoji": "🔵"}, "cedar-demo": {"label": "Cedar", "color": "orange", "emoji": "🟠"}},
+    "host_palette": [{"color": "blue", "emoji": "🔵"}, {"color": "orange", "emoji": "🟠"}, {"color": "purple", "emoji": "🟣"}],
+    "private_preference_write": "authorized",
+    "record_and_owner_outcome": {"revision": "spruce-r1", "freshness": "confirmed at both scenario boundaries", "next_milestone": "reviewed sanitized export", "current_task": "export-owner prepares fixture", "acceptance": "pending"}
+  },
+  "plain-host-fallback": {
+    "project_id": "cedar-demo",
+    "private_mapping": {"cedar-demo": {"label": "Cedar", "color": "orange", "emoji": "🟠"}},
+    "host_capability": "plain text only; colored emoji and message-bubble styling unavailable",
+    "record_and_owner_outcome": {"revision": "cedar-r5", "freshness": "confirmed current for this scenario", "review": "passed", "remaining_gate": "scope-owner approval"}
+  }
+}
