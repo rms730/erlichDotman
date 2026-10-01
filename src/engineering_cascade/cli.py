@@ -19,6 +19,9 @@ def _parser():
     routing.add_argument("task")
     routing.add_argument("--policy", required=True)
     routing.add_argument("--evidence")
+    routing.add_argument("--workflow", help="optional bound workflow sidecar")
+    workflow = sub.add_parser("workflow-check", help="check supplied workflow facts only")
+    workflow.add_argument("input")
     context = sub.add_parser("context", help="select project and revision scoped excerpts")
     context.add_argument("items")
     context.add_argument("--project", required=True)
@@ -32,6 +35,8 @@ def _parser():
     dispatch = sub.add_parser("dispatch", help="prepare a request for a host agent")
     dispatch.add_argument("packet")
     dispatch.add_argument("--decision", required=True)
+    dispatch.add_argument("--workflow", help="optional worker-scoped workflow sidecar")
+    dispatch.add_argument("--policy", help="active policy; required for a workflow retry")
     skills = sub.add_parser("skills", help="discover metadata or select compatible skills")
     skill_sub = skills.add_subparsers(dest="skill_command", required=True)
     discover = skill_sub.add_parser("discover")
@@ -83,7 +88,12 @@ def _run(args):
         return {"valid": True, "kind": args.kind}, 0
     if args.command == "route":
         return route(load_json(args.task), load_json(args.policy),
-                     load_json(args.evidence) if args.evidence else None), 0
+                     load_json(args.evidence) if args.evidence else None,
+                     load_json(args.workflow) if args.workflow else None), 0
+    if args.command == "workflow-check":
+        from .workflow import check_workflow
+        check_workflow(load_json(args.input))
+        return {"valid": True, "scope": "supplied_workflow_facts_only"}, 0
     if args.command == "context":
         from .context import select_context
         project = load_json(args.project)
@@ -98,7 +108,9 @@ def _run(args):
         return render_packet(result) if args.markdown else result, 0
     if args.command == "dispatch":
         from .adapters import ManualAdapter
-        return ManualAdapter().prepare(load_json(args.packet), load_json(args.decision)), 0
+        return ManualAdapter().prepare(load_json(args.packet), load_json(args.decision),
+                                       load_json(args.workflow) if args.workflow else None,
+                                       load_json(args.policy) if args.policy else None), 0
     if args.command == "skills":
         from .skills import discover_skills, select_skills
         if args.skill_command == "discover":

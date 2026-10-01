@@ -47,6 +47,7 @@ A precise plan can use advanced reasoning, then hand a mechanical implementation
 - Strict versioned JSON contracts, telemetry aggregation, and reviewable feedback recommendations.
 - Fifteen routing task classes and isolated fixture evaluations comparing five strategies.
 - A manual adapter that reports unavailable model controls and usage honestly.
+- Optional workflow checks for declared diagnostic ownership, priority transitions, evidence-driven retries and retained candidate behavior; [scope and limits](docs/WORKFLOW_BOUNDARIES.md).
 
 The initial policy is a heuristic. There is no learned cost optimizer, paid provider adapter, scheduler, or automatic policy rewrite. Fixture results demonstrate harness behavior, not real-model quality or cost savings. Missing token counts and costs remain `null`.
 

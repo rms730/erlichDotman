@@ -25,7 +25,7 @@ def _evidence(value):
     return value
 
 
-def route(task, policy, evidence=None):
+def route(task, policy, evidence=None, workflow=None):
     """Recommend a tier and context budget using classified task and observed evidence.
 
     attempts counts completed implementation attempts, not planning calls. Context
@@ -41,8 +41,33 @@ def route(task, policy, evidence=None):
         policy[field] = {key: int(value) for key, value in policy[field].items()}
     for field in ("max_attempts", "max_context_tokens", "skill_budget_tokens", "minimum_samples"):
         policy[field] = int(policy[field])
-    evidence = _evidence(evidence)
+    evidence = deepcopy(_evidence(evidence))
+    retry = None
+    if workflow is not None:
+        from .workflow import check_workflow
+        check_workflow(workflow, project_id=task["project_id"], task_id=task["task_id"])
+        retry = workflow.get("retry")
+        if retry:
+            attempts = int(retry["completed_attempts"])
+            if "attempts" in evidence and evidence["attempts"] != attempts:
+                raise ValueError("Retry attempt count differs")
+            previous = retry["effective_tier"]
+            if "previous_tier" in evidence and evidence["previous_tier"] != previous:
+                raise ValueError("Retry effective tier differs")
+            evidence["attempts"] = attempts
+            evidence["previous_tier"] = None if previous is None else int(previous)
+            kind = retry["stall_kind"]
+            evidence["validation_failed"] = (
+                kind in {"implementation", "reasoning"} and retry["purpose"] != "capture_evidence"
+            )
+            evidence["root_cause_unclear"] = kind == "reasoning"
+            if kind == "context":
+                evidence["context_insufficient"] = True
     reasons = ["category_default"]
+    if retry:
+        reasons.append(f"stall:{retry['stall_kind']}")
+        if retry["purpose"] == "capture_evidence":
+            reasons.append("capture_failure_evidence")
     baseline = policy["category_tiers"][task["category"]]
     floor = policy["risk_floors"][task["risk"]]
     level_floor = {"low": 0, "medium": 2, "high": 3}

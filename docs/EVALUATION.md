@@ -15,6 +15,8 @@ engineering-cascade eval --root . --mode fixtures --execute
 
 Execution requires explicit opt-in. Report harness errors separately from task quality failures. Baseline quality failures may be expected; unresolved orchestration/check failures must remain visible. Identical validators grade every strategy. Do not change the grader to accommodate a patch.
 
+The [workflow reliability regressions](../evals/workflow_reliability/README.md) exercise declared ownership, WIP transitions and retained candidate behavior. They include executable synthetic assembly checks and separate independent skill simulations; neither establishes real-project completion or model savings.
+
 ## Telemetry
 
 Every inference/workflow leg records run/project/task identity, strategy, category, stage, attempt, tier, reasoning setting if exposed, input/output tokens, metered usage/unit if available, cost/currency if available, latency, validation status, escalation delta, files changed, defects/rework and intervention. `task_success` is `null` on intermediate legs and a boolean on a terminal task record. Costs of failed tasks and all retries belong in the numerator.

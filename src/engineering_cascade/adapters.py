@@ -16,7 +16,7 @@ class ManualAdapter:
         "execution": False,
     }
 
-    def prepare(self, packet, decision):
+    def prepare(self, packet, decision, workflow=None, policy=None):
         _check_packet_binding(packet)
         validate(decision, "decision")
         for key in ("project_id", "task_id", "tier"):
@@ -24,6 +24,10 @@ class ManualAdapter:
                 raise ValueError("Packet and decision differ")
         if decision["status"] != "ready":
             raise ValueError("Decision requires human intervention")
+        if policy is not None:
+            validate(policy, "policy")
+            if policy["policy_id"] != decision["policy_id"]:
+                raise ValueError("Dispatch policy differs from the decision")
         for field in ("validation_commands", "escalate_if"):
             if any(value not in packet[field] for value in decision[field]):
                 raise ValueError(f"Packet omits decision {field}")
@@ -36,7 +40,7 @@ class ManualAdapter:
                 "revision"
             ]:
                 raise ValueError("Packet context identity differs")
-        return {
+        result = {
             "adapter": "manual",
             "capabilities": deepcopy(self.capabilities),
             "requested_tier": decision["tier"],
@@ -45,3 +49,16 @@ class ManualAdapter:
             "usage": None,
             "status": "awaiting_host_execution",
         }
+        if workflow is not None:
+            from .workflow import check_workflow
+            check_workflow(workflow, project_id=packet["project_id"], task_id=packet["task_id"],
+                           revision=packet["revision"], worker=True)
+            if "retry" in workflow:
+                if policy is None:
+                    raise ValueError("Retry dispatch requires the active policy")
+                limit = int(policy["max_attempts"])
+                if workflow["retry"]["completed_attempts"] >= limit:
+                    raise ValueError("Retry attempt limit exhausted")
+                result["retry_attempt_limit"] = limit
+            result["workflow"] = deepcopy(workflow)
+        return result
