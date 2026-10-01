@@ -1,0 +1,18 @@
+{
+  "kind": "manual_skill_application_test",
+  "provenance": "synthetic",
+  "requests": [
+    {
+      "id": "two-project-status",
+      "request": "The user asks: 'Give me the status of Maple and Cedar.' Both projects have canonical records and owner outcomes available in communication-state.json under two-project-status. The host can deliver multiple messages in this conversation; no external recipient or channel is involved. Simulate the next host reads and the exact message or messages you would send. Do not perform writes, external calls or a repository audit."
+    },
+    {
+      "id": "cached-blocker-resolved",
+      "request": "The user asks: 'Is Maple still blocked on the missing fixture?' Your cached summary from the previous day says that preview validation is blocked on the fixture. The latest authoritative record and current owner outcome can be read in communication-state.json under cached-blocker-resolved. Simulate the next host reads and the exact status message you would send. Do not perform writes, external calls or a repository audit."
+    },
+    {
+      "id": "current-state-unavailable",
+      "request": "The user asks: 'What is Cedar's current status?' Your cached summary from the previous day says that review is blocked. Current record/owner-read availability and the last confirmed state are in communication-state.json under current-state-unavailable. Simulate the next host reads and the exact status message you would send. Do not perform writes, external calls or a repository audit."
+    }
+  ]
+}

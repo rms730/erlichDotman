@@ -14,6 +14,8 @@ The end-to-end owner maintains one canonical project record as part of authorize
 
 Tasks may live in linked tickets; the canonical record keeps their order, status and acceptance coherent. A dated view or chat update links back to that record. Do not create competing status documents for each phase or worker.
 
+Use [project communication](communication.md) for user-facing status: identify the project first and check current record/owner evidence before reusing a cached status.
+
 ## Update boundary
 
 Reconcile the record when scope, priority, milestone, task/owner/status/dependency, blocker, acceptance evidence or a user decision materially changes. Also reconcile before handoff, pause/resume and completion. Preserve still-valid criteria and decisions; update the changed facts rather than rewriting the history. Routine tool calls with no changed facts need no write. Batch related changes at the next meaningful boundary.

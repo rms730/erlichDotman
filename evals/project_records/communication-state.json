@@ -1,0 +1,27 @@
+{
+  "provenance": "synthetic",
+  "two-project-status": {
+    "Maple": {
+      "preferences": {"project_name": "Maple", "marker": "[Maple]"},
+      "record": {"revision": "maple-r8", "freshness": "confirmed this scenario's current day", "milestone": "A reviewer can accept one sanitized preview", "tasks": [{"id": "parser-repair", "owner": "implementation-owner", "status": "accepted", "evidence": "local://maple/r8/parser-pass"}, {"id": "independent-review", "owner": "review-owner", "status": "queued", "depends_on": "parser-repair"}]},
+      "owner_outcome": {"revision": "maple-r8", "parser_regression": "passed", "milestone": "pending independent review", "evidence": "local://maple/r8/parser-pass"}
+    },
+    "Cedar": {
+      "preferences": {"project_name": "Cedar", "marker": null},
+      "record": {"revision": "cedar-r4", "freshness": "confirmed this scenario's current day", "milestone": "A reviewer can accept a sanitized import preview", "tasks": [{"id": "preview-validation", "owner": "preview-owner", "status": "blocked", "blocker": "missing synthetic fixture", "next_step": "fixture-owner supplies fixture"}, {"id": "independent-review", "owner": "review-owner", "status": "queued", "depends_on": "preview-validation"}]},
+      "owner_outcome": {"revision": "cedar-r4", "preview_validation": "not run", "blocker": "missing synthetic fixture"}
+    }
+  },
+  "cached-blocker-resolved": {
+    "preferences": {"project_name": "Maple", "marker": "[Maple]"},
+    "record": {"revision": "maple-r9", "freshness": "confirmed this scenario's current day", "fixture": "received", "preview_validation": "passed", "milestone": "pending independent review", "next_task": "review-owner performs independent review", "evidence": "local://maple/r9/preview-pass"},
+    "owner_outcome": {"revision": "maple-r9", "fixture_blocker": "resolved", "preview_validation": "passed", "evidence": "local://maple/r9/preview-pass"}
+  },
+  "current-state-unavailable": {
+    "preferences": {"project_name": "Cedar", "marker": null},
+    "record_read": "unavailable",
+    "current_owner_outcome": "unavailable",
+    "last_confirmed": {"revision": "cedar-r3", "freshness": "previous day in this scenario", "independent_review": "blocked", "missing_fact": "whether today's review completed"},
+    "next_targeted_refresh": "read the current review-owner outcome or current canonical record when authorized access is available"
+  }
+}
