@@ -25,7 +25,9 @@ Completion, first-pass success, retries, validation failure rate, escalation rat
 
 ## Real trials
 
-Use held-out tasks, frozen policy/model bindings, recorded versions, identical tools/validators and repeated runs. Randomize strategy order. Account for planning, context loading, reviews, retries, latency and human attention. Use confidence intervals rather than single-run precision. Use task acceptance and a transparent importance rubric instead of inventing an engineering-value scalar.
+The [exploratory pilot kit](../evals/pilot/README.md) defines a matched eight-task feasibility comparison, capture boundaries and claim limits. [Improvement priorities](IMPROVEMENT_PLAN.md) separate this fixed-model orchestration experiment from a later capability-routing experiment. Draft pilot stage records are not version-1 CLI telemetry; preserve both formats until an explicit compatible integration is implemented.
+
+For larger confirmatory trials, use held-out tasks, frozen policy/model bindings, recorded versions, identical tools/validators and repeated runs. Randomize strategy order. Account for planning, context loading, reviews, retries, latency and human attention. Choose uncertainty estimates appropriate to the design; the small pilot reports descriptive results, not precise general effects. Use task acceptance and a transparent importance rubric instead of inventing an engineering-value scalar.
 
 Feedback excludes scripted/manual observations, requires a minimum measured sample, and emits reviewable category/tier recommendations. It never rewrites defaults. Low-tier evidence suggests a follow-up controlled experiment; it does not establish that the adjacent lower tier succeeds.
 

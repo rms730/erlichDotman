@@ -6,3 +6,4 @@ recursive-include evals/tasks *.json
 recursive-include evals/fixtures *.py *.md
 include scripts/context_footprint.py
 recursive-include evals/context_architecture *.json *.md
+recursive-include evals/pilot *.json *.md
