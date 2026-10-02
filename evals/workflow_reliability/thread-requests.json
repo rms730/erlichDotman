@@ -1,0 +1,18 @@
+{
+  "provenance": "synthetic",
+  "kind": "manual_skill_application_test",
+  "requests": [
+    {
+      "id": "unfinished-milestone",
+      "request": "A parser repair has passed its component checks at maple-r12, but independent review and milestone acceptance remain pending with parser-owner. The thread has many messages. State whether to start another implementation thread and what the owner should preserve. No actual actions."
+    },
+    {
+      "id": "accepted-milestone",
+      "request": "A fictional parser milestone is accepted at maple-r13 with no dirty files. The next distinct milestone is a reviewed sanitized export. Supported host APIs can create a thread in Maple's project folder and return membership metadata. State the transition, minimal handoff and required placement check. No actual actions."
+    },
+    {
+      "id": "unsupported-placement",
+      "request": "Scope changes to a different export format at maple-r14 while export-owner has an unfinished candidate. The host exposes neither project/thread placement nor membership inspection. Its cwd is Maple's repository. State what is known about project placement and how to continue without duplicate work. No actual actions."
+    }
+  ]
+}

@@ -18,6 +18,8 @@ Safe tasks explicitly resolvable with deterministic operations use tier 0. A fai
 
 A routing decision never means a destructive migration, shell command, third-party installation or publication is authorized. Host authorization is a separate gate. Skills and adapters may also be unavailable; report that gap rather than claiming execution.
 
+The [optional runtime control contract](RUNTIME_CONTROLS.md) binds a current decision to explicit private model/reasoning profiles and bounded launch state. It requires a matching host acknowledgment before reporting dispatch ready, keeps requested/effective observations distinct, and stops unsupported paths. The manual adapter still launches no models; acknowledgments and counters are supplied declarations.
+
 The [optional workflow sidecar](WORKFLOW_BOUNDARIES.md) refines retries using a supplied stall classification and evidence/hypothesis. It separates ownership, tooling/access and context remedies from implementation/reasoning escalation, permits evidence-capture retries and preserves floors/attempt limits. Without it the version-1 heuristic above is unchanged. Classification and opaque evidence content remain host judgments.
 
 For expected-total-cost routing, collect latency, costs of every leg/retry, human attention and rework on held-out tasks. Calibrate project/category-specific decisions after enough observations. Review feedback recommendations before editing policy; never tune on the same fixtures used for the final comparison.

@@ -37,6 +37,13 @@ def _parser():
     dispatch.add_argument("--decision", required=True)
     dispatch.add_argument("--workflow", help="optional worker-scoped workflow sidecar")
     dispatch.add_argument("--policy", help="active policy; required for a workflow retry")
+    dispatch.add_argument("--task", help="classified task; required with a runtime policy")
+    dispatch.add_argument("--runtime-policy", help="explicit private model/limit bindings")
+    dispatch.add_argument("--launch", help="bound supplied attempt/worker state")
+    dispatch.add_argument("--host-ack", help="host control acknowledgment for this request")
+    observed = sub.add_parser("record-execution", help="check supplied execution observations")
+    observed.add_argument("dispatch")
+    observed.add_argument("observation")
     skills = sub.add_parser("skills", help="discover metadata or select compatible skills")
     skill_sub = skills.add_subparsers(dest="skill_command", required=True)
     discover = skill_sub.add_parser("discover")
@@ -108,9 +115,21 @@ def _run(args):
         return render_packet(result) if args.markdown else result, 0
     if args.command == "dispatch":
         from .adapters import ManualAdapter
-        return ManualAdapter().prepare(load_json(args.packet), load_json(args.decision),
-                                       load_json(args.workflow) if args.workflow else None,
-                                       load_json(args.policy) if args.policy else None), 0
+        result = ManualAdapter().prepare(
+            load_json(args.packet), load_json(args.decision),
+            load_json(args.workflow) if args.workflow else None,
+            load_json(args.policy) if args.policy else None,
+            task=load_json(args.task) if args.task else None,
+            runtime_policy=load_json(args.runtime_policy) if args.runtime_policy else None,
+            launch=load_json(args.launch) if args.launch else None,
+            host_ack=load_json(args.host_ack) if args.host_ack else None,
+        )
+        return result, 1 if result["status"] == "blocked_host_controls" else 0
+    if args.command == "record-execution":
+        from .adapters import ManualAdapter
+        result = ManualAdapter().record_execution(load_json(args.dispatch),
+                                                  load_json(args.observation))
+        return result, 0 if result["status"] == "host_controls_observed" else 1
     if args.command == "skills":
         from .skills import discover_skills, select_skills
         if args.skill_command == "discover":

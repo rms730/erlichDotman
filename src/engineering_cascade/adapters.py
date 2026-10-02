@@ -16,7 +16,8 @@ class ManualAdapter:
         "execution": False,
     }
 
-    def prepare(self, packet, decision, workflow=None, policy=None):
+    def prepare(self, packet, decision, workflow=None, policy=None, *, task=None,
+                runtime_policy=None, launch=None, host_ack=None):
         _check_packet_binding(packet)
         validate(decision, "decision")
         for key in ("project_id", "task_id", "tier"):
@@ -61,4 +62,26 @@ class ManualAdapter:
                     raise ValueError("Retry attempt limit exhausted")
                 result["retry_attempt_limit"] = limit
             result["workflow"] = deepcopy(workflow)
+        if runtime_policy is not None:
+            from .runtime_controls import host_control_gaps, prepare_execution
+            if task is None or launch is None:
+                raise ValueError("Runtime dispatch requires task and launch context")
+            request = prepare_execution(task, packet, decision, policy, runtime_policy,
+                                        launch, workflow)
+            gaps = host_control_gaps(request, host_ack)
+            result.update(
+                execution_request=request, host_acknowledgment=deepcopy(host_ack),
+                requested_model=request["requested_model"],
+                requested_reasoning=request["requested_reasoning"],
+                effective_model=None, effective_reasoning=None, observation=None,
+                unavailable_controls=gaps,
+                status="blocked_host_controls" if gaps else "awaiting_host_execution",
+            )
+            validate(result, "runtime_dispatch")
+        elif any(value is not None for value in (task, launch, host_ack)):
+            raise ValueError("Runtime controls require an explicit runtime policy")
         return result
+
+    def record_execution(self, prepared, observation):
+        from .runtime_controls import record_execution
+        return record_execution(prepared, observation)

@@ -83,6 +83,8 @@ Follow the [worked synthetic handoff](examples/README.md) to build a project/rev
 
 The Python core recommends tiers from category, risk, ambiguity, complexity and failure evidence, with bounded attempts. It selects project/revision-bound context, reads skill metadata, checks dependencies and conflicts, and reports capability gaps. Required context cannot be silently dropped.
 
+The optional [runtime control contract](docs/RUNTIME_CONTROLS.md) binds those decisions to private model/reasoning settings, attempt and worker limits, and a matching host acknowledgment. Unsupported controls block a dispatch on this path. Requested settings and supplied observations remain separate; tokens alone never establish billed cost.
+
 Versioned JSON contracts validate packets and supplied workflow facts. Optional [workflow checks](docs/WORKFLOW_BOUNDARIES.md) cover diagnostic ownership, priority transitions, classified retries and final-candidate behavior. Their evidence locators and owner acknowledgments are declarations; the checker cannot establish that the underlying outcome happened.
 
 Usage aggregation relies on records supplied by the host. Feedback recommendations are available for review. Offline evaluations cover fifteen routing task classes and compare five strategies using isolated scripted fixtures.
@@ -94,6 +96,8 @@ The manual adapter prepares a request for a human or host coding agent. It does 
 Routine milestone/task upkeep is a host instruction contract. It runs through the host's authorized documentation tool as work progresses. The core has no scheduler or background polling service, learned cost optimizer, paid provider adapter, or automatic policy rewrite. Host permissions and user intent remain authoritative.
 
 Color-coded project communication also depends on the host following the skill and honoring its private mapping. No runtime UI is bundled.
+
+Work stays with one owner through a milestone's implementation, review and acceptance. At a completed milestone or major scope change, a compact handoff can start a fresh thread in the relevant project folder when the host supports and verifies that placement. The [handoff guidance](skills/erlichdotman/references/handoffs.md) covers unsupported hosts and the costs of rebuilding context.
 
 The initial routing policy is a heuristic. Fixture results demonstrate harness behavior and do not establish real-model quality or cost savings. In the [project-record application scenarios](evals/project_records/README.md), five baseline evaluators and five revised-skill evaluators all handled the synthetic cases adequately. That supports instruction clarity; it does not prove unattended upkeep or a causal improvement. [Evaluation](docs/EVALUATION.md) describes the evidence needed for quality and resource comparisons.
 

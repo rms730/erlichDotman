@@ -11,6 +11,7 @@ The core makes decisions and validates boundaries; the host agent does the engin
 | `workflow.py` | Check optional bound ownership, priority, retry and integration facts | Declared facts only; no scheduler, evidence verification or permission grant |
 | `skills.py` | Read metadata and select compatible capabilities | No body loading, execution, or installation |
 | `adapters.py` | Prepare host dispatch | Explicit unsupported controls and unknown usage |
+| `runtime_controls.py` | Check optional private model bindings, limits, acknowledgments and observations | Supplied declarations only; no launcher, scheduler or billing estimate |
 | `validation.py` | Run authorized argv validators | Finite timeout, bounded output; caller owns sandbox/permission |
 | `telemetry.py` | Aggregate outcomes and recommend policy review | All attempts counted; unavailable measurements stay unknown |
 | `evaluation.py` | Check routing and scripted implementation loops | Isolated bundled fixtures; no inference savings claim |

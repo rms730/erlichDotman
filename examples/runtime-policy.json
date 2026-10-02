@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "policy_id": "synthetic-runtime-v1",
+  "profiles": {
+    "routine": {"model": "example-light", "reasoning": "low"},
+    "engineering": {"model": "example-standard", "reasoning": "medium"},
+    "escalation": {"model": "example-frontier", "reasoning": "high"}
+  },
+  "max_attempts": 2,
+  "max_parallel_workers": 1
+}

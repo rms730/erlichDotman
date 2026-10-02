@@ -1450,6 +1450,710 @@
           ]
         }
       }
+    },
+    "runtime_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "policy_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "routine": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "reasoning": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                }
+              },
+              "required": [
+                "model",
+                "reasoning"
+              ]
+            },
+            "engineering": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "reasoning": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                }
+              },
+              "required": [
+                "model",
+                "reasoning"
+              ]
+            },
+            "escalation": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "reasoning": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                }
+              },
+              "required": [
+                "model",
+                "reasoning"
+              ]
+            }
+          },
+          "required": [
+            "routine",
+            "engineering",
+            "escalation"
+          ]
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "max_parallel_workers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        }
+      },
+      "required": [
+        "schema_version",
+        "policy_id",
+        "profiles",
+        "max_attempts",
+        "max_parallel_workers"
+      ]
+    },
+    "launch_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "completed_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        "active_workers": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "stop_requested": {
+          "type": "boolean"
+        },
+        "escalation_reason": {
+          "enum": [
+            null,
+            "validation_failure",
+            "unclear_root_cause",
+            "capability_gap"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "project_id",
+        "task_id",
+        "revision",
+        "run_id",
+        "completed_attempts",
+        "active_workers",
+        "stop_requested",
+        "escalation_reason"
+      ]
+    },
+    "execution_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "task_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "runtime_policy_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "routing_policy_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "packet_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "profile": {
+          "enum": [
+            "deterministic",
+            "routine",
+            "engineering",
+            "escalation"
+          ]
+        },
+        "requested_tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "requested_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "requested_reasoning": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "active_workers": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "max_parallel_workers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "workflow_digest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "project_id",
+        "task_id",
+        "revision",
+        "run_id",
+        "runtime_policy_id",
+        "routing_policy_id",
+        "request_id",
+        "packet_digest",
+        "profile",
+        "requested_tier",
+        "requested_model",
+        "requested_reasoning",
+        "attempt",
+        "max_attempts",
+        "active_workers",
+        "max_parallel_workers",
+        "workflow_digest"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "profile": {
+                "const": "deterministic"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "requested_tier": {
+                "const": 0
+              },
+              "requested_model": {
+                "const": null
+              },
+              "requested_reasoning": {
+                "const": null
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "requested_tier": {
+                "minimum": 1
+              },
+              "requested_model": {
+                "type": "string"
+              },
+              "requested_reasoning": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "host_acknowledgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model_selection": {
+              "type": "boolean"
+            },
+            "reasoning_selection": {
+              "type": "boolean"
+            },
+            "attempt_limit": {
+              "type": "boolean"
+            },
+            "parallel_limit": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "model_selection",
+            "reasoning_selection",
+            "attempt_limit",
+            "parallel_limit"
+          ]
+        },
+        "request": {
+          "$ref": "#/$defs/execution_request"
+        }
+      },
+      "required": [
+        "schema_version",
+        "accepted",
+        "capabilities",
+        "request"
+      ]
+    },
+    "runtime_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cached_input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "usage_evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "billing_evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cost": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "latency_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "required": [
+        "input_tokens",
+        "cached_input_tokens",
+        "output_tokens",
+        "usage_evidence",
+        "currency",
+        "billing_evidence",
+        "cost",
+        "latency_ms"
+      ]
+    },
+    "execution_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "effective_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "effective_reasoning": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "runtime_evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cached_input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "usage_evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "billing_evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cost": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "latency_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "effective_model",
+        "effective_reasoning",
+        "runtime_evidence",
+        "input_tokens",
+        "cached_input_tokens",
+        "output_tokens",
+        "usage_evidence",
+        "currency",
+        "billing_evidence",
+        "cost",
+        "latency_ms"
+      ]
+    },
+    "runtime_dispatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "const": "manual"
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model_selection": {
+              "const": false
+            },
+            "reasoning_selection": {
+              "const": false
+            },
+            "exact_usage": {
+              "const": false
+            },
+            "execution": {
+              "const": false
+            }
+          },
+          "required": [
+            "model_selection",
+            "reasoning_selection",
+            "exact_usage",
+            "execution"
+          ]
+        },
+        "requested_tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "effective_tier": {
+          "const": null
+        },
+        "packet": {
+          "$ref": "#/$defs/packet"
+        },
+        "usage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/runtime_usage"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "blocked_host_controls",
+            "awaiting_host_execution",
+            "host_execution_unverified",
+            "host_controls_observed",
+            "host_control_violation"
+          ]
+        },
+        "execution_request": {
+          "$ref": "#/$defs/execution_request"
+        },
+        "host_acknowledgment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/host_acknowledgment"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "requested_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "requested_reasoning": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "effective_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "effective_reasoning": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "observation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/execution_observation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unavailable_controls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "host_acknowledgment",
+              "host_declined",
+              "model_selection",
+              "reasoning_selection",
+              "attempt_limit",
+              "parallel_limit"
+            ]
+          }
+        },
+        "workflow": {
+          "$ref": "#/$defs/workflow"
+        },
+        "retry_attempt_limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "adapter",
+        "capabilities",
+        "requested_tier",
+        "effective_tier",
+        "packet",
+        "usage",
+        "status",
+        "execution_request",
+        "host_acknowledgment",
+        "requested_model",
+        "requested_reasoning",
+        "effective_model",
+        "effective_reasoning",
+        "observation",
+        "unavailable_controls"
+      ]
     }
   }
 }

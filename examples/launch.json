@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "project_id": "sample-app",
+  "task_id": "safe-divide",
+  "revision": "example-revision",
+  "run_id": "synthetic-run",
+  "completed_attempts": 0,
+  "active_workers": 0,
+  "stop_requested": false,
+  "escalation_reason": null
+}
